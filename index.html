@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pivot Office Services | Dallas Metroplex Professional Office Support</title>
+<meta name="description" content="Pivot Office Services provides experienced, on-demand professional office support — document creation, product development support, office organization, and more — to businesses of all sizes throughout the Dallas Metroplex." />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #1B2E4B;
+    --steel:   #2E4A6B;
+    --gold:    #C4982A;
+    --cream:   #F8F6F1;
+    --white:   #FFFFFF;
+    --gray:    #6B7280;
+    --light:   #EEF1F5;
+    --text:    #1F2937;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 6%;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid #E5E7EB;
+    backdrop-filter: blur(6px);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+  .logo span { color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 2.2rem; }
+  nav ul a {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--navy); }
+  .nav-cta {
+    background: var(--navy);
+    color: var(--white) !important;
+    padding: 0.55rem 1.3rem;
+    border-radius: 4px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--steel) !important; color: var(--white) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    background: linear-gradient(135deg, #1A4D2E 0%, #1A4D2E 50%, #2D6A4F 70%, #B5852A 88%, #C4982A 100%);
+    padding: 8rem 6% 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 75% 40%, rgba(196,152,42,0.25) 0%, transparent 60%);
+  }
+  .hero-inner { max-width: 680px; position: relative; }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.4rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.18;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .hero p {
+    font-size: 1.08rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 520px;
+    margin-bottom: 2.4rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.85);
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+
+  /* ── SECTIONS ── */
+  section { padding: 5.5rem 6%; }
+  .section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 1.1rem;
+  }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--gray);
+    max-width: 560px;
+    line-height: 1.8;
+  }
+
+  /* ── WHAT I DO ── */
+  .services { background: var(--cream); }
+  .services-header { max-width: 600px; margin-bottom: 3.5rem; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .service-card {
+    background: var(--white);
+    border-radius: 6px;
+    padding: 2rem;
+    border-top: 3px solid var(--gold);
+    transition: box-shadow 0.2s;
+  }
+  .service-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+  .service-icon {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.6rem;
+  }
+  .service-card p {
+    font-size: 0.92rem;
+    color: var(--gray);
+    line-height: 1.75;
+  }
+
+  /* ── WHY PIVOT ── */
+  .why { background: var(--white); }
+  .why-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .why-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 1.4rem; }
+  .why-list li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .why-bullet {
+    width: 24px; height: 24px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .why-bullet::after {
+    content: '';
+    width: 8px; height: 5px;
+    border-left: 2px solid var(--white);
+    border-bottom: 2px solid var(--white);
+    transform: rotate(-45deg) translateY(-1px);
+  }
+  .why-list li p { font-size: 0.95rem; color: var(--text); line-height: 1.7; }
+  .why-list li strong { color: var(--navy); font-weight: 600; }
+  .why-visual {
+    background: var(--navy);
+    border-radius: 8px;
+    padding: 2.8rem;
+    color: var(--white);
+  }
+  .why-visual h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+  }
+  .why-visual p {
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+  .rate-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .rate-row:last-child { border-bottom: none; }
+  .rate-label { font-size: 0.88rem; color: rgba(255,255,255,0.75); }
+  .rate-value { font-size: 1.1rem; font-weight: 600; color: var(--gold); }
+
+  /* ── WHO I SERVE ── */
+  .who { background: var(--light); }
+  .who-header { max-width: 600px; margin-bottom: 3rem; }
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .pain-card {
+    background: var(--white);
+    border-radius: 6px;
+    padding: 1.75rem;
+  }
+  .pain-card .quote {
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--gray);
+    margin-bottom: 0.75rem;
+    line-height: 1.75;
+  }
+  .pain-card .label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--navy);
+    text-align: center;
+    padding: 5rem 6%;
+  }
+  .cta-section .section-eyebrow { display: block; margin-bottom: 0.75rem; }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .cta-section p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0 auto 2.2rem;
+    line-height: 1.8;
+  }
+  .cta-contacts {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .cta-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .cta-contact-item:hover { color: var(--gold); }
+  .cta-contact-item span { font-size: 1.1rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111827;
+    padding: 2rem 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer .logo { 
+    font-size: 1rem;
+    color: #FFFFFF;
+  }
+  footer .logo span { color: #E8B84B; }
+  footer p {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* ── DIVIDER ── */
+  .gold-rule {
+    width: 48px; height: 3px;
+    background: var(--gold);
+    margin: 1.2rem 0 1.8rem;
+    border-radius: 2px;
+  }
+
+  /* ── CONTACT FORM ── */
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 900px;
+    margin: 2.5rem auto 0;
+    text-align: left;
+  }
+  .contact-direct h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+  }
+  .contact-direct-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: color 0.2s;
+  }
+  .contact-direct-item:hover { color: var(--gold); }
+  .contact-direct-item span { font-size: 1.1rem; }
+  .contact-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 1.5rem 0;
+  }
+  .contact-divider::before,
+  .contact-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+  }
+  .contact-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+  }
+  .form-group { margin-bottom: 1rem; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.4); }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { height: 110px; resize: vertical; }
+  .btn-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--white);
+    padding: 0.85rem;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s;
+  }
+  .btn-submit:hover { opacity: 0.88; }
+
+  @media (max-width: 768px) {
+    .contact-wrapper { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .why-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero { padding-top: 7rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">Pivot<span>Office</span>Services</a>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Pivot</a></li>
+    <li><a href="#who">Who I Serve</a></li>
+    <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Dallas Metroplex Professional&nbsp;|&nbsp;Skilled&nbsp;|&nbsp;Qualified</span>
+    <h1>The office help you need, <em>without the overhead.</em></h1>
+    <p>Pivot Office Services provides experienced, on-demand professional office support to businesses of all sizes — from entrepreneurs and professionals in transition to mass-market retailers. Remote or on-site, on your schedule.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Let's Work Together</a>
+      <a href="#services" class="btn-ghost">See What I Do</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <p class="section-eyebrow">What I Do</p>
+    <h2 class="section-title">A full range of administrative expertise</h2>
+    <div class="gold-rule"></div>
+    <p class="section-sub">From polished presentations to complex shipping documentation, I handle the time-consuming tasks that keep your business running — so you can focus on growing it.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Document Creation</h3>
+      <p>PowerPoint presentations, spreadsheets, expense reports, proposals, resumes, and business letters crafted with care and attention to detail.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌐</div>
+      <h3>International Shipping Documentation</h3>
+      <p>Commercial invoices and detailed line-item descriptions with photos, prepared per package. Large shipments strategically broken into 25-item packages to minimize customs delays — a proven approach for smooth international delivery.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🗂️</div>
+      <h3>Office Organization</h3>
+      <p>Physical and digital office organization, decluttering, and filing systems that actually make sense. A brief pre-visit checklist ensures we're aligned before work begins.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🖥️</div>
+      <h3>Tech Troubleshooting & Training</h3>
+      <p>Hands-on troubleshooting and training for PowerPoint, Excel, Word, Outlook, Google Apps, iOS Apps, and general office software and equipment.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📦</div>
+      <h3>Specialized Support</h3>
+      <p>High-demand services requiring specialized skills, experience, and certifications — including Product Development support and C- and E-Level Executive Administrative assistance.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏠</div>
+      <h3>Home Office Setup & Career Transition Support</h3>
+      <p>For professionals in transition — home office setup, resume writing, document prep, and organizational support to help you pivot into your next chapter.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PIVOT -->
+<section class="why" id="why">
+  <div class="why-inner">
+    <div>
+      <p class="section-eyebrow">Why Pivot</p>
+      <h2 class="section-title">Experience you can lean on</h2>
+      <div class="gold-rule"></div>
+      <p class="section-sub">I'm not a general virtual assistant. I bring years of real office management experience to every engagement.</p>
+      <ul class="why-list">
+        <li>
+          <div class="why-bullet"></div>
+          <p><strong>No learning curve.</strong> I've managed complex administrative operations firsthand — I hit the ground running.</p>
+        </li>
+        <li>
+          <div class="why-bullet"></div>
+          <p><strong>Flexible engagements.</strong> Hourly, project-based, or monthly retainer — structured around what works for you.</p>
+        </li>
+        <li>
+          <div class="why-bullet"></div>
+          <p><strong>Remote or on-site.</strong> I work wherever the job requires, serving businesses throughout the Dallas Metroplex.</p>
+        </li>
+        <li>
+          <div class="why-bullet"></div>
+          <p><strong>No overhead, no agency fees, no long-term commitments.</strong> Get the benefit of an experienced office manager without the cost of a full-time hire.</p>
+        </li>
+        <li>
+          <div class="why-bullet"></div>
+          <p><strong>Professionally insured.</strong> Pivot Office Services carries E&O/Professional Liability Insurance — so you can engage with confidence.</p>
+        </li>
+      </ul>
+    </div>
+    <div class="why-visual">
+      <h3>Simple, transparent pricing</h3>
+      <p>No surprises. No long-term contracts. Just honest work at fair rates.</p>
+      <div class="rate-row">
+        <span class="rate-label">Remote Hourly</span>
+        <span class="rate-value">$65 / hr</span>
+      </div>
+      <div class="rate-row">
+        <span class="rate-label">On-Site Hourly</span>
+        <span class="rate-value">$80 / hr</span>
+      </div>
+      <div class="rate-row">
+        <span class="rate-label">Project-Based</span>
+        <span class="rate-value">Custom Quote</span>
+      </div>
+      <div class="rate-row">
+        <span class="rate-label">On-Site Travel Fee (within 15 mi)</span>
+        <span class="rate-value">$20</span>
+      </div>
+      <div class="rate-row">
+        <span class="rate-label">On-Site Travel Fee (16–30 mi)</span>
+        <span class="rate-value">$35</span>
+      </div>
+      <div class="rate-row">
+        <span class="rate-label">On-Site Travel Fee (30+ mi)</span>
+        <span class="rate-value">Quoted</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO I SERVE -->
+<section class="who" id="who">
+  <div class="who-header">
+    <p class="section-eyebrow">Who I Serve</p>
+    <h2 class="section-title">Sound familiar?</h2>
+    <div class="gold-rule"></div>
+    <p class="section-sub">I work with small business owners, entrepreneurs, and professionals in transition who need reliable administrative support — without the commitment of a full-time hire.</p>
+  </div>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <p class="quote">"I'm drowning in paperwork and it's pulling me away from growing my business."</p>
+      <p class="label">The Overwhelmed Owner</p>
+    </div>
+    <div class="pain-card">
+      <p class="quote">"I have a big project but no bandwidth to tackle it — and I don't want to deal with a temp agency or a long-term hire."</p>
+      <p class="label">The Project-Based Client</p>
+    </div>
+    <div class="pain-card">
+      <p class="quote">"My office is a mess and I can't find anything. I need someone to help me organize it — the right way, so I can actually maintain it."</p>
+      <p class="label">The Disorganized Office</p>
+    </div>
+    <div class="pain-card">
+      <p class="quote">"The shipping paperwork and packing takes too much of my time and navigating the carrier process is a headache. I need someone who knows this process inside and out — and has the experience to make it move faster."</p>
+      <p class="label">The Exporter</p>
+    </div>
+    <div class="pain-card">
+      <p class="quote">"I just left corporate to start my own thing and I need everything set up from scratch — home office equipment, business email, Zoom, expense tracking, and a workspace that actually works."</p>
+      <p class="label">The Professional in Transition</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <span class="section-eyebrow">Get In Touch</span>
+  <h2>Need to Pivot? Let's get to work.</h2>
+  <p>No pressure. No commitment. Let's talk about where you are and how I can help.</p>
+
+  <div class="contact-wrapper">
+    <!-- Direct Contact -->
+    <div class="contact-direct">
+      <h3>Reach me directly</h3>
+      <a href="mailto:PivotOfficeServices@gmail.com" class="contact-direct-item">
+        <span>✉️</span> PivotOfficeServices@gmail.com
+      </a>
+      <a href="tel:+12142363636" class="contact-direct-item">
+        <span>📞</span> (214) 236-3636
+      </a>
+      <span class="contact-direct-item">
+        <span>📍</span> Dallas Metroplex, TX — Remote & On-Site
+      </span>
+      <div class="contact-divider">or</div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <h3>Send a message</h3>
+      <form action="https://formspree.io/f/xrewanjg" method="POST" id="pivot-contact-form">
+        <input type="hidden" name="_subject" value="New inquiry from PivotOfficeServices.com" />
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Your Name" required />
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Your Email Address" required />
+        </div>
+        <div class="form-group">
+          <input type="tel" name="phone" placeholder="Your Phone Number (optional)" />
+        </div>
+        <div class="form-group">
+          <textarea name="message" placeholder="Tell me a little about what you need help with..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a class="logo" href="#">Pivot<span>Office</span>Services</a>
+  <p>© 2026 Pivot Office Services | Dallas Metroplex, TX | All Rights Reserved</p>
+  <p style="font-size:0.75rem; color:rgba(255,255,255,0.4);">Fully Insured | E&O / Professional Liability Coverage</p>
+  <p style="font-size:0.75rem; color:rgba(255,255,255,0.4);">Pivot Office Services maintains strict confidentiality of all client information. Services are provided under signed agreement.</p>
+</footer>
+
+<script>
+  const pivotForm = document.getElementById('pivot-contact-form');
+  if (pivotForm) {
+    pivotForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const submitBtn = pivotForm.querySelector('.btn-submit');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      fetch(pivotForm.action, {
+        method: 'POST',
+        body: new FormData(pivotForm),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then((response) => {
+          if (response.ok) {
+            pivotForm.innerHTML = '<p style="color:#C4982A; font-weight:600; text-align:center; padding:1rem 0;">Thank you! Your message has been sent — Rachel will be in touch shortly.</p>';
+          } else {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+            alert('Something went wrong sending your message. Please try again or email PivotOfficeServices@gmail.com directly.');
+          }
+        })
+        .catch(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          alert('Something went wrong sending your message. Please try again or email PivotOfficeServices@gmail.com directly.');
+        });
+    });
+  }
+</script>
+
+</body>
+</html>
