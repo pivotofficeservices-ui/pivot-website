@@ -5,19 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Pivot Office Services | Dallas Metroplex Professional Office Support</title>
 <meta name="description" content="Pivot Office Services provides experienced, on-demand professional office support to businesses of all sizes throughout the Dallas Metroplex, including document creation, product development support, office organization, and more." />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://pivotofficeservices.com/" />
+<meta property="og:title" content="Pivot Office Services | Dallas Metroplex Professional Office Support" />
+<meta property="og:description" content="Experienced, on-demand professional office support for businesses of all sizes throughout the Dallas Metroplex." />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><g fill="%23C49A3A" transform="rotate(-14 100 100)"><circle cx="120" cy="60" r="15"/><polygon points="132,52 188,40 132,62"/><ellipse cx="103" cy="95" rx="20" ry="32" transform="rotate(20 103 95)"/><path d="M100 118 C88 138 72 152 55 160 C70 158 86 148 98 132 Z"/><path d="M104 122 C98 140 88 154 76 164 C90 158 100 146 106 130 Z"/><path d="M112 76 C92 52 64 34 34 30 C58 44 76 62 86 88 C96 96 108 90 112 76 Z"/></g></svg>' />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --navy:    #1B2E4B;
-    --steel:   #2E4A6B;
-    --gold:    #C4982A;
-    --cream:   #F8F6F1;
-    --white:   #FFFFFF;
-    --gray:    #6B7280;
-    --light:   #EEF1F5;
-    --text:    #1F2937;
+    --primary:      #1B2A44;
+    --primary-2:    #26395A;
+    --footer:       #131E33;
+    --gold:         #C49A3A;
+    --gold-bright:  #E3B54C;
+    --cream:        #F6F4EF;
+    --white:        #FFFFFF;
+    --gray:         #5E6977;
+    --light:        #EEF1F5;
+    --text:         #212936;
+    --line:         #E4E7EC;
+    --tint:         rgba(196,154,58,0.10);
   }
 
   html { scroll-behavior: smooth; }
@@ -29,49 +39,100 @@
     line-height: 1.7;
   }
 
+  ::selection { background: rgba(196,154,58,0.25); }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--gold-bright);
+    outline-offset: 2px;
+  }
+
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.1rem 6%;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s, border-color 0.3s, padding 0.3s;
+  }
+  nav.scrolled, nav.menu-open {
     background: rgba(255,255,255,0.97);
-    border-bottom: 1px solid #E5E7EB;
+    border-color: var(--line);
     backdrop-filter: blur(6px);
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
   }
   .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
     font-family: 'Playfair Display', serif;
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--navy);
+    color: var(--white);
     letter-spacing: 0.01em;
     text-decoration: none;
+    transition: color 0.3s;
   }
-  .logo span { color: var(--gold); }
-  nav ul { list-style: none; display: flex; gap: 2.2rem; }
+  nav.scrolled .logo, nav.menu-open .logo { color: var(--primary); }
+  .logo-text span { color: var(--gold-bright); transition: color 0.3s; }
+  nav.scrolled .logo-text span, nav.menu-open .logo-text span { color: var(--gold); }
+  .logo-mark { width: 26px; height: 26px; flex-shrink: 0; color: var(--gold-bright); transition: color 0.3s; }
+  nav.scrolled .logo-mark, nav.menu-open .logo-mark { color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 2.2rem; align-items: center; }
   nav ul a {
     font-size: 0.88rem;
     font-weight: 500;
-    color: var(--gray);
+    color: rgba(255,255,255,0.78);
     text-decoration: none;
     letter-spacing: 0.03em;
     text-transform: uppercase;
-    transition: color 0.2s;
+    transition: color 0.25s;
+    position: relative;
   }
-  nav ul a:hover { color: var(--navy); }
+  nav ul a:not(.nav-cta)::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    height: 2px;
+    background: var(--gold-bright);
+    border-radius: 1px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+  nav ul a:not(.nav-cta):hover::after,
+  nav ul a:not(.nav-cta).active::after { transform: scaleX(1); }
+  nav ul a:hover { color: var(--white); }
+  nav.scrolled ul a { color: var(--gray); }
+  nav.scrolled ul a:hover { color: var(--primary); }
+  nav.scrolled ul a:not(.nav-cta)::after { background: var(--gold); }
   .nav-cta {
-    background: var(--navy);
+    background: var(--gold);
     color: var(--white) !important;
     padding: 0.55rem 1.3rem;
-    border-radius: 4px;
-    transition: background 0.2s !important;
+    border-radius: 5px;
+    transition: background 0.25s !important;
   }
-  .nav-cta:hover { background: var(--steel) !important; color: var(--white) !important; }
+  .nav-cta:hover { background: var(--gold-bright) !important; }
+  nav.scrolled .nav-cta { background: var(--primary); }
+  nav.scrolled .nav-cta:hover { background: var(--primary-2) !important; }
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem;
+    color: var(--white);
+    transition: color 0.3s;
+  }
+  nav.scrolled .nav-toggle, nav.menu-open .nav-toggle { color: var(--primary); }
+  .nav-toggle svg { display: block; }
 
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: flex; align-items: center;
-    background: linear-gradient(135deg, #1A4D2E 0%, #1A4D2E 50%, #2D6A4F 70%, #B5852A 88%, #C4982A 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 60%, var(--primary) 100%);
     padding: 8rem 6% 5rem;
     position: relative;
     overflow: hidden;
@@ -79,65 +140,123 @@
   .hero::before {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 75% 40%, rgba(196,152,42,0.25) 0%, transparent 60%);
+    background:
+      radial-gradient(ellipse at 78% 30%, rgba(227,181,76,0.16) 0%, transparent 55%),
+      radial-gradient(ellipse at 10% 95%, rgba(227,181,76,0.08) 0%, transparent 45%);
   }
-  .hero-inner { max-width: 680px; position: relative; }
+  .hero-inner { max-width: 680px; position: relative; z-index: 2; }
+  .hero-bird {
+    position: absolute;
+    right: 6%;
+    top: 15%;
+    width: clamp(180px, 28vw, 440px);
+    height: auto;
+    color: var(--gold-bright);
+    opacity: 0.16;
+    pointer-events: none;
+    animation: hover-float 6s ease-in-out infinite alternate;
+  }
+  @keyframes hover-float {
+    from { transform: translateY(0) rotate(0deg); }
+    to   { transform: translateY(-18px) rotate(2deg); }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: none; }
+  }
   .hero-eyebrow {
     display: inline-block;
     font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--gold-bright);
     margin-bottom: 1.4rem;
+    opacity: 0;
+    animation: rise 0.7s ease 0.15s forwards;
   }
   .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
     font-weight: 600;
     color: var(--white);
-    line-height: 1.18;
+    line-height: 1.16;
     margin-bottom: 1.5rem;
   }
+  .hero h1 .h1-line {
+    display: block;
+    opacity: 0;
+    animation: rise 0.7s ease forwards;
+  }
+  .hero h1 .h1-line:nth-child(1) { animation-delay: 0.3s; }
+  .hero h1 .h1-line:nth-child(2) { animation-delay: 0.45s; }
   .hero h1 em {
-    font-style: normal;
-    color: var(--gold);
+    font-style: italic;
+    color: var(--gold-bright);
   }
   .hero p {
     font-size: 1.08rem;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.78);
     max-width: 520px;
     margin-bottom: 2.4rem;
     font-weight: 300;
     line-height: 1.8;
+    opacity: 0;
+    animation: rise 0.7s ease 0.6s forwards;
   }
-  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0;
+    animation: rise 0.7s ease 0.75s forwards;
+  }
   .btn-primary {
     background: var(--gold);
     color: var(--white);
     padding: 0.85rem 2rem;
-    border-radius: 4px;
+    border-radius: 5px;
     font-weight: 600;
     font-size: 0.92rem;
     text-decoration: none;
     letter-spacing: 0.02em;
-    transition: opacity 0.2s;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
   }
-  .btn-primary:hover { opacity: 0.88; }
+  .btn-primary:hover {
+    background: var(--gold-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+  }
   .btn-ghost {
     border: 1px solid rgba(255,255,255,0.35);
     color: rgba(255,255,255,0.85);
     padding: 0.85rem 2rem;
-    border-radius: 4px;
+    border-radius: 5px;
     font-weight: 500;
     font-size: 0.92rem;
     text-decoration: none;
-    transition: border-color 0.2s, color 0.2s;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
   }
-  .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+  .btn-ghost:hover { border-color: var(--white); color: var(--white); background: rgba(255,255,255,0.06); }
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.5);
+    z-index: 2;
+    opacity: 0;
+    animation: rise 0.7s ease 1.4s forwards;
+    transition: opacity 0.4s;
+  }
+  .scroll-hint.gone { opacity: 0 !important; }
+  .scroll-hint svg { animation: nudge 1.8s ease-in-out infinite; display: block; }
+  @keyframes nudge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(7px); }
+  }
 
   /* ── SECTIONS ── */
-  section { padding: 5.5rem 6%; }
+  section { padding: 6rem 6%; }
   .section-eyebrow {
     font-size: 0.75rem;
     font-weight: 600;
@@ -145,12 +264,22 @@
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 0.75rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+  .chap {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--gold);
+    letter-spacing: 0;
   }
   .section-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(1.9rem, 3.5vw, 2.6rem);
     font-weight: 600;
-    color: var(--navy);
+    color: var(--primary);
     line-height: 1.25;
     margin-bottom: 1.1rem;
   }
@@ -160,6 +289,48 @@
     max-width: 560px;
     line-height: 1.8;
   }
+
+  /* ── FLIGHT-PATH DIVIDER ── */
+  .flight-rule {
+    display: block;
+    width: 130px;
+    height: 26px;
+    margin: 1.1rem 0 1.7rem;
+    overflow: visible;
+    clip-path: inset(-6px 100% -6px -6px);
+    transition: clip-path 1.2s ease 0.2s;
+  }
+  .reveal.in .flight-rule, .no-reveal .flight-rule { clip-path: inset(-6px -6px -6px -6px); }
+  .flight-rule path {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 1 7;
+  }
+  .flight-rule .fr-bird { fill: var(--gold); stroke: none; }
+
+  /* ── TRUST STRIP ── */
+  .trust {
+    padding: 1.5rem 6%;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.83rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .trust-item svg { color: var(--gold); flex-shrink: 0; }
 
   /* ── WHAT I DO ── */
   .services { background: var(--cream); }
@@ -171,21 +342,74 @@
   }
   .service-card {
     background: var(--white);
-    border-radius: 6px;
-    padding: 2rem;
-    border-top: 3px solid var(--gold);
-    transition: box-shadow 0.2s;
+    border-radius: 12px;
+    padding: 2.1rem 2rem;
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
   }
-  .service-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+    transform: scaleX(0.16);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(196,154,58,0) 50%, rgba(196,154,58,0.08) 100%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
+  .service-card:hover {
+    box-shadow: 0 16px 38px rgba(27,42,68,0.10);
+    transform: translateY(-5px);
+    border-color: rgba(196,154,58,0.35);
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover::after { opacity: 1; }
+  .card-num {
+    position: absolute;
+    top: 1.05rem;
+    right: 1.3rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 2.7rem;
+    line-height: 1;
+    color: rgba(196,154,58,0.16);
+    transition: color 0.35s, transform 0.35s;
+    user-select: none;
+    pointer-events: none;
+  }
+  .service-card:hover .card-num {
+    color: rgba(196,154,58,0.4);
+    transform: translateY(-3px);
+  }
   .service-icon {
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    background: var(--tint);
+    color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.1rem;
+    transition: background 0.25s, color 0.25s;
+  }
+  .service-card:hover .service-icon {
+    background: var(--gold);
+    color: var(--white);
   }
   .service-card h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.15rem;
     font-weight: 600;
-    color: var(--navy);
+    color: var(--primary);
     margin-bottom: 0.6rem;
   }
   .service-card p {
@@ -212,7 +436,7 @@
   }
   .why-bullet {
     width: 24px; height: 24px;
-    background: var(--navy);
+    background: var(--primary);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
@@ -226,12 +450,13 @@
     transform: rotate(-45deg) translateY(-1px);
   }
   .why-list li p { font-size: 0.95rem; color: var(--text); line-height: 1.7; }
-  .why-list li strong { color: var(--navy); font-weight: 600; }
+  .why-list li strong { color: var(--primary); font-weight: 600; }
   .why-visual {
-    background: var(--navy);
-    border-radius: 8px;
-    padding: 2.8rem;
+    background: linear-gradient(160deg, var(--primary) 0%, var(--primary-2) 100%);
+    border-radius: 12px;
+    padding: 2.6rem;
     color: var(--white);
+    box-shadow: 0 18px 44px rgba(0,0,0,0.14);
   }
   .why-visual h3 {
     font-family: 'Playfair Display', serif;
@@ -240,22 +465,21 @@
     margin-bottom: 0.5rem;
     color: var(--white);
   }
-  .why-visual p {
+  .why-visual > p {
     font-size: 0.92rem;
     color: rgba(255,255,255,0.7);
-    margin-bottom: 2rem;
+    margin-bottom: 1.6rem;
     line-height: 1.7;
   }
   .rate-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.9rem 0;
+    padding: 0.8rem 0;
     border-bottom: 1px solid rgba(255,255,255,0.1);
   }
-  .rate-row:last-child { border-bottom: none; }
   .rate-label { font-size: 0.88rem; color: rgba(255,255,255,0.75); }
-  .rate-value { font-size: 1.1rem; font-weight: 600; color: var(--gold); }
+  .rate-value { font-size: 1.05rem; font-weight: 600; color: var(--gold-bright); }
   .rate-prefix {
     font-size: 0.7rem;
     font-weight: 400;
@@ -271,13 +495,22 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 3rem;
   }
   .pain-card {
     background: var(--white);
-    border-radius: 6px;
+    border-radius: 10px;
     padding: 1.75rem;
+    border: 1px solid var(--line);
+    transition: box-shadow 0.25s, transform 0.25s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
   }
+  .pain-card:hover {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.07);
+    transform: translateY(-3px);
+  }
+  .pain-front { transition: opacity 0.3s; }
   .pain-card .quote {
     font-style: italic;
     font-size: 0.95rem;
@@ -288,18 +521,56 @@
   .pain-card .label {
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--navy);
+    color: var(--primary);
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
+  .pain-hint {
+    display: inline-block;
+    margin-top: 0.9rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .pain-back {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, var(--primary) 0%, var(--primary-2) 100%);
+    border-radius: 9px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.35s, transform 0.35s;
+    pointer-events: none;
+  }
+  .pain-card.flipped .pain-back { opacity: 1; transform: none; }
+  .pain-card.flipped .pain-front { opacity: 0; }
+  .pain-back p { font-size: 0.9rem; color: rgba(255,255,255,0.85); line-height: 1.7; }
+  .pain-back .label { color: var(--gold-bright); }
 
   /* ── CTA ── */
   .cta-section {
-    background: var(--navy);
+    background: linear-gradient(160deg, var(--primary) 0%, var(--primary-2) 100%);
     text-align: center;
-    padding: 5rem 6%;
+    padding: 5.5rem 6%;
+    position: relative;
+    overflow: hidden;
   }
-  .cta-section .section-eyebrow { display: block; margin-bottom: 0.75rem; }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 85% 15%, rgba(227,181,76,0.10) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .cta-section > * { position: relative; }
+  .cta-section .section-eyebrow { justify-content: center; margin-bottom: 0.75rem; color: var(--gold-bright); }
+  .cta-section .chap { color: var(--gold-bright); }
   .cta-section h2 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 4vw, 3rem);
@@ -308,59 +579,60 @@
     margin-bottom: 1rem;
     line-height: 1.2;
   }
-  .cta-section p {
+  .cta-section > p {
     color: rgba(255,255,255,0.7);
     font-size: 1rem;
     max-width: 480px;
     margin: 0 auto 2.2rem;
     line-height: 1.8;
   }
-  .cta-contacts {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-  .cta-contact-item {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    color: rgba(255,255,255,0.8);
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .cta-contact-item:hover { color: var(--gold); }
-  .cta-contact-item span { font-size: 1.1rem; }
 
   /* ── FOOTER ── */
   footer {
-    background: #111827;
-    padding: 2rem 6%;
+    background: var(--footer);
+    padding: 3rem 6% 2rem;
+  }
+  .footer-top {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 2rem;
   }
-  footer .logo { 
-    font-size: 1rem;
-    color: #FFFFFF;
+  footer .logo { font-size: 1rem; color: #FFFFFF; }
+  footer .logo .logo-text span { color: var(--gold-bright); }
+  footer .logo-mark { width: 20px; height: 20px; color: var(--gold-bright); }
+  .footer-tag {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 0.6rem;
+    max-width: 280px;
+    line-height: 1.7;
   }
-  footer .logo span { color: #E8B84B; }
-  footer p {
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.6);
+  .footer-nav {
+    list-style: none;
+    display: flex;
+    gap: 1.8rem;
+    flex-wrap: wrap;
   }
-
-  /* ── DIVIDER ── */
-  .gold-rule {
-    width: 48px; height: 3px;
-    background: var(--gold);
-    margin: 1.2rem 0 1.8rem;
-    border-radius: 2px;
+  .footer-nav a {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
   }
+  .footer-nav a:hover { color: var(--gold-bright); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+  .footer-bottom .fine-print { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
 
   /* ── CONTACT FORM ── */
   .contact-wrapper {
@@ -387,8 +659,8 @@
     margin-bottom: 1rem;
     transition: color 0.2s;
   }
-  .contact-direct-item:hover { color: var(--gold); }
-  .contact-direct-item span { font-size: 1.1rem; }
+  .contact-direct-item:hover { color: var(--gold-bright); }
+  .contact-direct-item svg { flex-shrink: 0; color: var(--gold-bright); }
   .contact-divider {
     display: flex;
     align-items: center;
@@ -420,7 +692,7 @@
     padding: 0.75rem 1rem;
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 4px;
+    border-radius: 5px;
     color: var(--white);
     font-family: 'Inter', sans-serif;
     font-size: 0.92rem;
@@ -430,7 +702,7 @@
   .form-group input::placeholder,
   .form-group textarea::placeholder { color: rgba(255,255,255,0.4); }
   .form-group input:focus,
-  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea:focus { border-color: var(--gold-bright); }
   .form-group textarea { height: 110px; resize: vertical; }
   .btn-submit {
     width: 100%;
@@ -438,34 +710,121 @@
     color: var(--white);
     padding: 0.85rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     font-family: 'Inter', sans-serif;
     font-size: 0.92rem;
     font-weight: 600;
     cursor: pointer;
     letter-spacing: 0.02em;
-    transition: opacity 0.2s;
+    transition: background 0.2s, transform 0.2s;
   }
-  .btn-submit:hover { opacity: 0.88; }
+  .btn-submit:hover { background: var(--gold-bright); transform: translateY(-1px); }
 
-  @media (max-width: 768px) {
-    .contact-wrapper { grid-template-columns: 1fr; gap: 1.5rem; }
+  /* ── SCROLLING COMPANION BIRD ── */
+  #flying-bird {
+    position: fixed;
+    top: 0; left: 0;
+    width: clamp(30px, 4vw, 48px);
+    height: auto;
+    color: var(--gold);
+    opacity: 0;
+    z-index: 60;
+    pointer-events: none;
+    transition: opacity 0.7s ease;
+    will-change: transform;
+  }
+  #flying-bird.flying { opacity: 0.55; }
+
+  /* ── REVEAL ON SCROLL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero-bird, .scroll-hint svg { animation: none; }
+    .hero-eyebrow, .hero h1 .h1-line, .hero p, .hero-btns, .scroll-hint {
+      animation: none; opacity: 1; transform: none;
+    }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .flight-rule { clip-path: none; transition: none; }
+    #flying-bird { display: none; }
   }
 
   /* ── RESPONSIVE ── */
+  @media (max-width: 820px) {
+    .hero-bird {
+      right: -6%;
+      top: 10%;
+      width: 220px;
+      opacity: 0.10;
+    }
+  }
   @media (max-width: 768px) {
-    nav ul { display: none; }
+    .nav-toggle { display: block; }
+    nav ul {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 16px 30px rgba(0,0,0,0.08);
+      padding: 0.5rem 0;
+    }
+    nav ul.open { display: flex; }
+    nav ul li { width: 100%; text-align: center; }
+    nav ul.open a { display: block; padding: 0.9rem 6%; color: var(--gray); }
+    nav ul.open a:hover { color: var(--primary); }
+    nav ul.open a:not(.nav-cta)::after { display: none; }
+    nav ul.open a.nav-cta {
+      margin: 0.5rem 6% 0.4rem;
+      border-radius: 5px;
+      background: var(--primary);
+      color: var(--white);
+    }
     .why-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .hero { padding-top: 7rem; }
+    .contact-wrapper { grid-template-columns: 1fr; gap: 1.5rem; }
+    .trust { gap: 1.2rem 2rem; }
   }
 </style>
 </head>
 <body>
 
+<!-- Shared hummingbird mark -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="bird-mark">
+      <g transform="rotate(-14 100 100)">
+        <circle cx="120" cy="60" r="15"/>
+        <polygon points="132,52 188,40 132,62"/>
+        <ellipse cx="103" cy="95" rx="20" ry="32" transform="rotate(20 103 95)"/>
+        <path d="M100 118 C88 138 72 152 55 160 C70 158 86 148 98 132 Z"/>
+        <path d="M104 122 C98 140 88 154 76 164 C90 158 100 146 106 130 Z"/>
+        <path d="M112 76 C92 52 64 34 34 30 C58 44 76 62 86 88 C96 96 108 90 112 76 Z"/>
+      </g>
+    </g>
+  </defs>
+</svg>
+
 <!-- NAV -->
 <nav>
-  <a class="logo" href="#">Pivot<span>Office</span>Services</a>
-  <ul>
+  <a class="logo" href="#">
+    <svg class="logo-mark" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true"><use href="#bird-mark"/></svg>
+    <span class="logo-text">Pivot <span>Office</span> Services</span>
+  </a>
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <ul id="nav-menu">
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Pivot</a></li>
     <li><a href="#who">Who I Serve</a></li>
@@ -475,53 +834,95 @@
 
 <!-- HERO -->
 <section class="hero">
+  <svg class="hero-bird" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true"><use href="#bird-mark"/></svg>
   <div class="hero-inner">
     <span class="hero-eyebrow">Dallas Metroplex Professional&nbsp;|&nbsp;Skilled&nbsp;|&nbsp;Qualified</span>
-    <h1>The office help you need, <em>without the overhead.</em></h1>
+    <h1><span class="h1-line">The office help you need,</span> <span class="h1-line"><em>without the overhead.</em></span></h1>
     <p>Pivot Office Services provides experienced, on-demand professional office support to businesses of all sizes, from entrepreneurs and professionals in transition to mass-market retailers. Remote or on-site, on your schedule.</p>
     <div class="hero-btns">
       <a href="#contact" class="btn-primary">Let's Work Together</a>
       <a href="#services" class="btn-ghost">See What I Do</a>
     </div>
   </div>
+  <div class="scroll-hint" aria-hidden="true">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
 </section>
+
+<!-- TRUST STRIP -->
+<div class="trust">
+  <span class="trust-item">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Professionally Insured
+  </span>
+  <span class="trust-item">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    E&amp;O / Professional Liability
+  </span>
+  <span class="trust-item">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Dallas Metroplex
+  </span>
+  <span class="trust-item">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    On Your Schedule
+  </span>
+</div>
 
 <!-- SERVICES -->
 <section class="services" id="services">
-  <div class="services-header">
-    <p class="section-eyebrow">What I Do</p>
+  <div class="services-header reveal">
+    <p class="section-eyebrow"><span class="chap">01</span> What I Do</p>
     <h2 class="section-title">A full range of administrative expertise</h2>
-    <div class="gold-rule"></div>
+    <svg class="flight-rule" viewBox="0 0 130 26" aria-hidden="true"><path d="M3 20 C 30 4, 62 24, 100 10"/><path class="fr-bird" transform="translate(100 2) scale(0.11) rotate(-10)" d="M120 60 m-15 0 a15 15 0 1 0 30 0 a15 15 0 1 0 -30 0 M132 52 L188 40 L132 62 Z M83 63 a20 32 20 1 0 40 0 a20 32 20 1 0 -40 0 M100 118 C88 138 72 152 55 160 C70 158 86 148 98 132 Z M112 76 C92 52 64 34 34 30 C58 44 76 62 86 88 C96 96 108 90 112 76 Z"/></svg>
     <p class="section-sub">From polished presentations to complex shipping documentation, I handle the time-consuming tasks that keep your business running so you can focus on growing it.</p>
   </div>
   <div class="services-grid">
-    <div class="service-card">
-      <div class="service-icon">📊</div>
+    <div class="service-card reveal">
+      <span class="card-num" aria-hidden="true">01</span>
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
       <h3>Document Creation</h3>
       <p>PowerPoint presentations, spreadsheets, expense reports, proposals, resumes, and business letters crafted with care and attention to detail.</p>
     </div>
-    <div class="service-card">
-      <div class="service-icon">🌐</div>
+    <div class="service-card reveal">
+      <span class="card-num" aria-hidden="true">02</span>
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
       <h3>International Shipping Documentation</h3>
       <p>Commercial invoices and detailed line-item descriptions with photos, prepared per package. Large shipments strategically broken into 25-item packages to minimize customs delays, a proven approach for smooth international delivery.</p>
     </div>
-    <div class="service-card">
-      <div class="service-icon">🗂️</div>
+    <div class="service-card reveal">
+      <span class="card-num" aria-hidden="true">03</span>
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      </div>
       <h3>Office Organization</h3>
       <p>Physical and digital office organization, decluttering, and filing systems that actually make sense. A brief pre-visit checklist ensures we're aligned before work begins.</p>
     </div>
-    <div class="service-card">
-      <div class="service-icon">🖥️</div>
+    <div class="service-card reveal">
+      <span class="card-num" aria-hidden="true">04</span>
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
       <h3>Tech Troubleshooting & Training</h3>
-      <p>Hands-on troubleshooting and training for PowerPoint, Excel, Word, Outlook, Google Apps, iOS Apps, and general office software and equipment.</p>
+      <p>Hands-on troubleshooting and training for PowerPoint, Excel, Word, Outlook, Google Apps, iOS Apps, and general office software and equipment. Adopting new software? I help integrate proprietary systems into your workflow and train your team to use them with confidence.</p>
     </div>
-    <div class="service-card">
-      <div class="service-icon">📦</div>
+    <div class="service-card reveal">
+      <span class="card-num" aria-hidden="true">05</span>
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+      </div>
       <h3>Specialized Support</h3>
-      <p>High-demand services requiring specialized skills, experience, and certifications, including Product Development support and C- and E-Level Executive Administrative assistance.</p>
+      <p>High-demand services requiring specialized skills, experience, and certifications, including Product Development support and C- and E-Level Executive Administrative assistance. I also turn raw data into insight: a CSV file becomes a fully formatted report with pivot tables, charts, graphs, and an AI-assisted summary of findings.</p>
     </div>
-    <div class="service-card">
-      <div class="service-icon">🏠</div>
+    <div class="service-card reveal">
+      <span class="card-num" aria-hidden="true">06</span>
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
       <h3>Home Office Setup & Career Transition Support</h3>
       <p>For professionals in transition: home office setup, resume writing, document prep, and organizational support to help you pivot into your next chapter.</p>
     </div>
@@ -531,10 +932,10 @@
 <!-- WHY PIVOT -->
 <section class="why" id="why">
   <div class="why-inner">
-    <div>
-      <p class="section-eyebrow">Why Pivot</p>
+    <div class="reveal">
+      <p class="section-eyebrow"><span class="chap">02</span> Why Pivot</p>
       <h2 class="section-title">Experience you can lean on</h2>
-      <div class="gold-rule"></div>
+      <svg class="flight-rule" viewBox="0 0 130 26" aria-hidden="true"><path d="M3 20 C 30 4, 62 24, 100 10"/><path class="fr-bird" transform="translate(100 2) scale(0.11) rotate(-10)" d="M120 60 m-15 0 a15 15 0 1 0 30 0 a15 15 0 1 0 -30 0 M132 52 L188 40 L132 62 Z M83 63 a20 32 20 1 0 40 0 a20 32 20 1 0 -40 0 M100 118 C88 138 72 152 55 160 C70 158 86 148 98 132 Z M112 76 C92 52 64 34 34 30 C58 44 76 62 86 88 C96 96 108 90 112 76 Z"/></svg>
       <p class="section-sub">I'm not a general virtual assistant. I bring years of real office management experience to every engagement.</p>
       <ul class="why-list">
         <li>
@@ -559,7 +960,7 @@
         </li>
       </ul>
     </div>
-    <div class="why-visual">
+    <div class="why-visual reveal">
       <h3>Simple, transparent pricing</h3>
       <p>No surprises. No long-term contracts. Just honest work at fair rates.</p>
       <div class="rate-row">
@@ -592,39 +993,74 @@
 
 <!-- WHO I SERVE -->
 <section class="who" id="who">
-  <div class="who-header">
-    <p class="section-eyebrow">Who I Serve</p>
+  <div class="who-header reveal">
+    <p class="section-eyebrow"><span class="chap">03</span> Who I Serve</p>
     <h2 class="section-title">Sound familiar?</h2>
-    <div class="gold-rule"></div>
-    <p class="section-sub">I work with small business owners, entrepreneurs, and professionals in transition who need reliable administrative support without the commitment of a full-time hire.</p>
+    <svg class="flight-rule" viewBox="0 0 130 26" aria-hidden="true"><path d="M3 20 C 30 4, 62 24, 100 10"/><path class="fr-bird" transform="translate(100 2) scale(0.11) rotate(-10)" d="M120 60 m-15 0 a15 15 0 1 0 30 0 a15 15 0 1 0 -30 0 M132 52 L188 40 L132 62 Z M83 63 a20 32 20 1 0 40 0 a20 32 20 1 0 -40 0 M100 118 C88 138 72 152 55 160 C70 158 86 148 98 132 Z M112 76 C92 52 64 34 34 30 C58 44 76 62 86 88 C96 96 108 90 112 76 Z"/></svg>
+    <p class="section-sub">I work with small business owners, entrepreneurs, and professionals in transition who need reliable administrative support without the commitment of a full-time hire. <strong>Click a card to see how I help.</strong></p>
   </div>
   <div class="pain-grid">
-    <div class="pain-card">
-      <p class="quote">"I'm drowning in paperwork and it's pulling me away from growing my business."</p>
-      <p class="label">The Overwhelmed Owner</p>
+    <div class="pain-card reveal" tabindex="0" role="button" aria-pressed="false">
+      <div class="pain-front">
+        <p class="quote">"I'm drowning in paperwork and it's pulling me away from growing my business."</p>
+        <p class="label">The Overwhelmed Owner</p>
+        <span class="pain-hint">How I help &rarr;</span>
+      </div>
+      <div class="pain-back">
+        <p>I take the recurring paperwork off your plate: document prep, expense reports, and filing systems. Your time goes back to clients and growth.</p>
+        <p class="label">The Overwhelmed Owner</p>
+      </div>
     </div>
-    <div class="pain-card">
-      <p class="quote">"I have a big project but no bandwidth to tackle it, and I don't want to deal with a temp agency or a long-term hire."</p>
-      <p class="label">The Project-Based Client</p>
+    <div class="pain-card reveal" tabindex="0" role="button" aria-pressed="false">
+      <div class="pain-front">
+        <p class="quote">"I have a big project but no bandwidth to tackle it, and I don't want to deal with a temp agency or a long-term hire."</p>
+        <p class="label">The Project-Based Client</p>
+        <span class="pain-hint">How I help &rarr;</span>
+      </div>
+      <div class="pain-back">
+        <p>Engage me for exactly the length of the project. No agency fees, no long-term contract. Experienced help that starts fast and ends clean.</p>
+        <p class="label">The Project-Based Client</p>
+      </div>
     </div>
-    <div class="pain-card">
-      <p class="quote">"My office is a mess and I can't find anything. I need someone to help me organize it the right way, so I can actually maintain it."</p>
-      <p class="label">The Disorganized Office</p>
+    <div class="pain-card reveal" tabindex="0" role="button" aria-pressed="false">
+      <div class="pain-front">
+        <p class="quote">"My office is a mess and I can't find anything. I need someone to help me organize it the right way, so I can actually maintain it."</p>
+        <p class="label">The Disorganized Office</p>
+        <span class="pain-hint">How I help &rarr;</span>
+      </div>
+      <div class="pain-back">
+        <p>We start with a brief pre-visit checklist, then I build physical and digital filing systems designed around how you actually work, so they stick.</p>
+        <p class="label">The Disorganized Office</p>
+      </div>
     </div>
-    <div class="pain-card">
-      <p class="quote">"The shipping paperwork and packing takes too much of my time and navigating the carrier process is a headache. I need someone who knows this process inside and out, and has the experience to make it move faster."</p>
-      <p class="label">The Exporter</p>
+    <div class="pain-card reveal" tabindex="0" role="button" aria-pressed="false">
+      <div class="pain-front">
+        <p class="quote">"The shipping paperwork and packing takes too much of my time and navigating the carrier process is a headache. I need someone who knows this process inside and out, and has the experience to make it move faster."</p>
+        <p class="label">The Exporter</p>
+        <span class="pain-hint">How I help &rarr;</span>
+      </div>
+      <div class="pain-back">
+        <p>I prepare commercial invoices and line-item documentation per package, and strategically split large shipments into 25-item packages to minimize customs delays.</p>
+        <p class="label">The Exporter</p>
+      </div>
     </div>
-    <div class="pain-card">
-      <p class="quote">"I just left corporate to start my own thing and I need everything set up from scratch: home office equipment, business email, Zoom, expense tracking, and a workspace that actually works."</p>
-      <p class="label">The Professional in Transition</p>
+    <div class="pain-card reveal" tabindex="0" role="button" aria-pressed="false">
+      <div class="pain-front">
+        <p class="quote">"I just left corporate to start my own thing and I need everything set up from scratch: home office equipment, business email, Zoom, expense tracking, and a workspace that actually works."</p>
+        <p class="label">The Professional in Transition</p>
+        <span class="pain-hint">How I help &rarr;</span>
+      </div>
+      <div class="pain-back">
+        <p>From home office setup to resume writing, document prep, and expense tracking, I'll get your new venture's foundation in place so you can hit the ground running.</p>
+        <p class="label">The Professional in Transition</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section" id="contact">
-  <span class="section-eyebrow">Get In Touch</span>
+  <p class="section-eyebrow"><span class="chap">04</span> Get In Touch</p>
   <h2>Need to Pivot? Let's get to work.</h2>
   <p>No pressure. No commitment. Let's talk about where you are and how I can help.</p>
 
@@ -633,13 +1069,16 @@
     <div class="contact-direct">
       <h3>Reach me directly</h3>
       <a href="mailto:PivotOfficeServices@gmail.com" class="contact-direct-item">
-        <span>✉️</span> PivotOfficeServices@gmail.com
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        PivotOfficeServices@gmail.com
       </a>
       <a href="tel:+12142363636" class="contact-direct-item">
-        <span>📞</span> (214) 236-3636
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (214) 236-3636
       </a>
       <span class="contact-direct-item">
-        <span>📍</span> Dallas Metroplex, TX | Remote & On-Site
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Dallas Metroplex, TX | Remote & On-Site
       </span>
       <div class="contact-divider">or</div>
     </div>
@@ -669,13 +1108,32 @@
 
 <!-- FOOTER -->
 <footer>
-  <a class="logo" href="#">Pivot<span>Office</span>Services</a>
-  <p>© 2026 Pivot Office Services | Dallas Metroplex, TX | All Rights Reserved</p>
-  <p style="font-size:0.75rem; color:rgba(255,255,255,0.4);">Fully Insured | E&O / Professional Liability Coverage</p>
-  <p style="font-size:0.75rem; color:rgba(255,255,255,0.4);">Pivot Office Services maintains strict confidentiality of all client information. Services are provided under signed agreement.</p>
+  <div class="footer-top">
+    <div>
+      <a class="logo" href="#">
+        <svg class="logo-mark" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true"><use href="#bird-mark"/></svg>
+        <span class="logo-text">Pivot <span>Office</span> Services</span>
+      </a>
+      <p class="footer-tag">Experienced, on-demand office support for the Dallas Metroplex. Remote or on-site, on your schedule.</p>
+    </div>
+    <ul class="footer-nav">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why Pivot</a></li>
+      <li><a href="#who">Who I Serve</a></li>
+      <li><a href="#contact">Get In Touch</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Pivot Office Services | Dallas Metroplex, TX | All Rights Reserved</p>
+    <p class="fine-print">Fully Insured | E&O / Professional Liability Coverage</p>
+    <p class="fine-print">Pivot Office Services maintains strict confidentiality of all client information. Services are provided under signed agreement.</p>
+  </div>
 </footer>
 
+<svg id="flying-bird" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true"><use href="#bird-mark"/></svg>
+
 <script>
+  // Contact form
   const pivotForm = document.getElementById('pivot-contact-form');
   if (pivotForm) {
     pivotForm.addEventListener('submit', function (e) {
@@ -692,7 +1150,7 @@
       })
         .then((response) => {
           if (response.ok) {
-            pivotForm.innerHTML = '<p style="color:#C4982A; font-weight:600; text-align:center; padding:1rem 0;">Thank you! Your message has been sent. Rachel will be in touch shortly.</p>';
+            pivotForm.innerHTML = '<p style="color:var(--gold-bright); font-weight:600; text-align:center; padding:1rem 0;">Thank you! Your message has been sent. Rachel will be in touch shortly.</p>';
           } else {
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
@@ -705,6 +1163,136 @@
           alert('Something went wrong sending your message. Please try again or email PivotOfficeServices@gmail.com directly.');
         });
     });
+  }
+
+  // Nav: solid on scroll + hide scroll hint
+  const navEl = document.querySelector('nav');
+  const scrollHint = document.querySelector('.scroll-hint');
+  const navState = () => {
+    navEl.classList.toggle('scrolled', window.scrollY > 30);
+    if (scrollHint) scrollHint.classList.toggle('gone', window.scrollY > 80);
+  };
+  window.addEventListener('scroll', navState, { passive: true });
+  navState();
+
+  // Mobile menu
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('open');
+      navEl.classList.toggle('menu-open', open);
+      navToggle.setAttribute('aria-expanded', open);
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    navMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        navEl.classList.remove('menu-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // Scrollspy: highlight the section being read
+  const spyLinks = new Map();
+  document.querySelectorAll('nav ul a:not(.nav-cta)').forEach((a) => {
+    spyLinks.set(a.getAttribute('href').slice(1), a);
+  });
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        spyLinks.forEach((a) => a.classList.remove('active'));
+        const link = spyLinks.get(entry.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  spyLinks.forEach((_, id) => {
+    const sec = document.getElementById(id);
+    if (sec) spyObserver.observe(sec);
+  });
+
+  // Pain cards: flip to reveal how I help
+  document.querySelectorAll('.pain-card').forEach((card) => {
+    const flip = () => {
+      const flipped = card.classList.toggle('flipped');
+      card.setAttribute('aria-pressed', flipped);
+    };
+    card.addEventListener('click', flip);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
+    });
+  });
+
+  // Scrolling companion hummingbird
+  const flyer = document.getElementById('flying-bird');
+  if (flyer && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const waypoints = [
+      { p: 0.00, x: 0.80, y: 0.32 },
+      { p: 0.14, x: 0.90, y: 0.16 },
+      { p: 0.30, x: 0.87, y: 0.60 },
+      { p: 0.45, x: 0.07, y: 0.28 },
+      { p: 0.60, x: 0.09, y: 0.64 },
+      { p: 0.75, x: 0.89, y: 0.26 },
+      { p: 0.90, x: 0.84, y: 0.55 },
+      { p: 1.00, x: 0.48, y: 0.72 }
+    ];
+    const lerp = (a, b, k) => a + (b - a) * k;
+    const targetAt = (p) => {
+      let a = waypoints[0], b = waypoints[waypoints.length - 1];
+      for (let i = 0; i < waypoints.length - 1; i++) {
+        if (p >= waypoints[i].p && p <= waypoints[i + 1].p) { a = waypoints[i]; b = waypoints[i + 1]; break; }
+      }
+      const k = (p - a.p) / ((b.p - a.p) || 1);
+      return { x: lerp(a.x, b.x, k) * window.innerWidth, y: lerp(a.y, b.y, k) * window.innerHeight };
+    };
+    let bx = 0, by = 0, facing = 1, rot = 0, started = false;
+    const t0 = performance.now();
+    const tick = (now) => {
+      const t = (now - t0) / 1000;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const p = maxScroll > 0 ? Math.min(1, Math.max(0, window.scrollY / maxScroll)) : 0;
+      const tg = targetAt(p);
+      tg.y += Math.sin(t * 2.1) * 6;
+      tg.x += Math.sin(t * 1.3) * 5;
+      if (!started) { bx = tg.x; by = tg.y; started = true; }
+      const nx = lerp(bx, tg.x, 0.06);
+      const ny = lerp(by, tg.y, 0.06);
+      const vx = nx - bx, vy = ny - by;
+      bx = nx; by = ny;
+      if (Math.abs(vx) > 0.3) facing = vx >= 0 ? 1 : -1;
+      rot = lerp(rot, Math.max(-16, Math.min(20, vy * 4)), 0.1);
+      flyer.style.transform = 'translate(' + (bx - 22) + 'px,' + (by - 22) + 'px) rotate(' + (rot * facing) + 'deg) scaleX(' + facing + ')';
+      flyer.classList.toggle('flying', p > 0.05);
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const grids = new Map();
+    revealEls.forEach((el) => {
+      const parent = el.parentElement;
+      if (!grids.has(parent)) grids.set(parent, 0);
+      const idx = grids.get(parent);
+      el.style.transitionDelay = (idx * 70) + 'ms';
+      grids.set(parent, idx + 1);
+    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach((el) => observer.observe(el));
+  } else {
+    document.body.classList.add('no-reveal');
+    revealEls.forEach((el) => el.classList.add('in'));
   }
 </script>
 
