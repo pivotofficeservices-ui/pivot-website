@@ -659,6 +659,38 @@
   }
   .svc-view:hover { color: var(--white); }
 
+  /* ── DUAL EXAMPLE BACK (two portfolio previews) ── */
+  .svc-back-dual { justify-content: center; gap: 0.55rem; }
+  .svc-example {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 8px;
+    padding: 0.5rem 0.6rem;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .svc-example:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(227,181,76,0.5);
+    transform: translateY(-2px);
+  }
+  .svc-ex-thumb {
+    width: 76px; height: 54px;
+    object-fit: cover; object-position: top;
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: var(--white);
+    flex-shrink: 0;
+  }
+  .svc-ex-meta { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+  .svc-ex-title { color: var(--white); font-weight: 600; font-size: 0.9rem; line-height: 1.3; }
+  .svc-ex-desc { color: rgba(255,255,255,0.6); font-size: 0.72rem; }
+  .svc-ex-arrow { color: var(--gold-bright); font-weight: 700; flex-shrink: 0; transition: transform 0.2s; }
+  .svc-example:hover .svc-ex-arrow { transform: translateX(3px); }
+
   /* ── LIGHTBOX (EXPANDED EXAMPLE VIEW) ── */
   #lightbox {
     position: fixed;
@@ -1103,13 +1135,38 @@
         <a class="svc-view" href="assets/example-shipping-invoice.jpg" target="_blank" rel="noopener">View full size &rarr;</a>
       </div>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal has-example" tabindex="0" role="button" aria-pressed="false">
       <span class="card-num" aria-hidden="true">03</span>
-      <div class="service-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <span class="flip-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      </span>
+      <div class="svc-front">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Office Organization</h3>
+        <p>Physical and digital office organization, decluttering, and filing systems that actually make sense. A brief pre-visit checklist ensures we're aligned before work begins.</p>
+        <span class="pain-hint">See examples <span class="arrow">&rarr;</span></span>
       </div>
-      <h3>Office Organization</h3>
-      <p>Physical and digital office organization, decluttering, and filing systems that actually make sense. A brief pre-visit checklist ensures we're aligned before work begins.</p>
+      <div class="svc-back svc-back-dual">
+        <p class="label">Portfolio Samples</p>
+        <a class="svc-view svc-example" href="assets/example-org-physical.jpg">
+          <img class="svc-ex-thumb" src="assets/example-org-physical.jpg" alt="Before and after photo of a storage room: overstuffed unlabeled cardboard boxes transformed into clear labeled bins on sectioned shelving (representative sample)" loading="lazy" />
+          <span class="svc-ex-meta">
+            <span class="svc-ex-title">Physical space</span>
+            <span class="svc-ex-desc">Storage room &middot; before &amp; after</span>
+          </span>
+          <span class="svc-ex-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <a class="svc-view svc-example" href="assets/example-org-digital.jpg">
+          <img class="svc-ex-thumb" src="assets/example-org-digital.jpg" alt="Digital file system document: standardized folder structure, before-and-after file naming, and a naming convention (fictional portfolio sample)" loading="lazy" />
+          <span class="svc-ex-meta">
+            <span class="svc-ex-title">Digital files</span>
+            <span class="svc-ex-desc">Filing system &middot; cleanup</span>
+          </span>
+          <span class="svc-ex-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
     </div>
     <div class="service-card reveal">
       <span class="card-num" aria-hidden="true">04</span>
@@ -1470,7 +1527,7 @@
   document.querySelectorAll('.svc-view').forEach((link) => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      const img = link.closest('.svc-back').querySelector('img');
+      const img = link.querySelector('img') || link.closest('.svc-back').querySelector('img');
       openLightbox(link.getAttribute('href'), img ? img.alt : '');
     });
   });
