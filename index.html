@@ -589,7 +589,8 @@
     color: var(--gold);
   }
   .pain-hint .arrow { transition: transform 0.25s ease; display: inline-block; }
-  .pain-card:hover .pain-hint .arrow { transform: translateX(4px); }
+  .pain-card:hover .pain-hint .arrow,
+  .service-card:hover .pain-hint .arrow { transform: translateX(4px); }
   .flip-icon {
     position: absolute;
     top: 1rem;
@@ -605,8 +606,108 @@
     transition: transform 0.4s ease, background 0.25s, color 0.25s;
     pointer-events: none;
   }
-  .pain-card:hover .flip-icon { background: var(--gold); color: var(--white); transform: rotate(180deg); }
-  .pain-card.flipped .flip-icon { opacity: 0; }
+  .pain-card:hover .flip-icon,
+  .service-card.has-example:hover .flip-icon { background: var(--gold); color: var(--white); transform: rotate(180deg); }
+  .pain-card.flipped .flip-icon,
+  .service-card.flipped .flip-icon { opacity: 0; }
+
+  /* ── SERVICE EXAMPLE FLIP ── */
+  .service-card.has-example { cursor: pointer; }
+  .service-card .flip-icon { top: auto; bottom: 1.05rem; right: 1.3rem; }
+  .svc-front { transition: opacity 0.3s; }
+  .svc-back {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, var(--primary) 0%, var(--primary-2) 100%);
+    border-radius: 11px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.35s, transform 0.35s;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .service-card.flipped .svc-back { opacity: 1; transform: none; pointer-events: auto; }
+  .service-card.flipped .svc-front { opacity: 0; }
+  .svc-back .label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--gold-bright);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .svc-back img {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 7px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: var(--white);
+  }
+  .svc-view {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    text-decoration: none;
+  }
+  .svc-view:hover { color: var(--white); }
+
+  /* ── LIGHTBOX (EXPANDED EXAMPLE VIEW) ── */
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(19,30,51,0.94);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 4.5rem 1.5rem 1.5rem;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    background: var(--white);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+    animation: lb-in 0.25s ease;
+  }
+  @keyframes lb-in {
+    from { opacity: 0; transform: scale(0.97); }
+    to   { opacity: 1; transform: none; }
+  }
+  #lightbox-close {
+    position: absolute;
+    top: 1.1rem;
+    left: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: rgba(255,255,255,0.12);
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 999px;
+    padding: 0.55rem 1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  #lightbox-close:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
   .pain-back {
     position: absolute;
     inset: 0;
@@ -830,6 +931,7 @@
     .flight-rule { clip-path: none; transition: none; }
     .btn-primary::after { display: none; }
     #flying-bird { display: none; }
+    #lightbox img { animation: none; }
   }
 
   /* ── RESPONSIVE ── */
@@ -963,21 +1065,43 @@
     <p class="section-sub">From polished presentations to complex shipping documentation, I handle the time-consuming tasks that keep your business running so you can focus on growing it.</p>
   </div>
   <div class="services-grid">
-    <div class="service-card reveal">
+    <div class="service-card reveal has-example" tabindex="0" role="button" aria-pressed="false">
       <span class="card-num" aria-hidden="true">01</span>
-      <div class="service-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      <span class="flip-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      </span>
+      <div class="svc-front">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>Document Creation</h3>
+        <p>PowerPoint presentations, spreadsheets, expense reports, proposals, resumes, and business letters crafted with care and attention to detail.</p>
+        <span class="pain-hint">See an example <span class="arrow">&rarr;</span></span>
       </div>
-      <h3>Document Creation</h3>
-      <p>PowerPoint presentations, spreadsheets, expense reports, proposals, resumes, and business letters crafted with care and attention to detail.</p>
+      <div class="svc-back">
+        <p class="label">Portfolio Sample: Expense Report</p>
+        <img src="assets/example-expense-report.jpg" alt="Sample expense report with line-item detail, receipt log, policy exclusions, and approval trail (fictional data)" loading="lazy" />
+        <a class="svc-view" href="assets/example-expense-report.jpg" target="_blank" rel="noopener">View full size &rarr;</a>
+      </div>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal has-example" tabindex="0" role="button" aria-pressed="false">
       <span class="card-num" aria-hidden="true">02</span>
-      <div class="service-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span class="flip-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      </span>
+      <div class="svc-front">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3>International Shipping Documentation</h3>
+        <p>Commercial invoices and detailed line-item descriptions with photos, prepared per package. Large shipments strategically broken into 25-item packages to minimize customs delays.</p>
+        <span class="pain-hint">See an example <span class="arrow">&rarr;</span></span>
       </div>
-      <h3>International Shipping Documentation</h3>
-      <p>Commercial invoices and detailed line-item descriptions with photos, prepared per package. Large shipments strategically broken into 25-item packages to minimize customs delays.</p>
+      <div class="svc-back">
+        <p class="label">Portfolio Sample: Comp Sample Shipment</p>
+        <img src="assets/example-shipping-invoice.jpg" alt="Sample commercial invoice for an international comp-sample shipment: 25 reference samples with country of origin, category, quantity, unit and total cost, product thumbnails, and totals broken down by country and category (fictional data)" loading="lazy" />
+        <a class="svc-view" href="assets/example-shipping-invoice.jpg" target="_blank" rel="noopener">View full size &rarr;</a>
+      </div>
     </div>
     <div class="service-card reveal">
       <span class="card-num" aria-hidden="true">03</span>
@@ -995,13 +1119,24 @@
       <h3>Tech Troubleshooting & Training</h3>
       <p>Hands-on troubleshooting and training for PowerPoint, Excel, Word, Outlook, Google Apps, iOS Apps, and office equipment. I also help your team adopt new software with confidence.</p>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal has-example" tabindex="0" role="button" aria-pressed="false">
       <span class="card-num" aria-hidden="true">05</span>
-      <div class="service-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+      <span class="flip-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      </span>
+      <div class="svc-front">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        </div>
+        <h3>Specialized Support</h3>
+        <p>High-demand services requiring specialized skills and certifications, including Product Development support and C- and E-Level Executive Administrative assistance. I also turn raw data into formatted reports with pivot tables, charts, and clear summaries.</p>
+        <span class="pain-hint">See a before &amp; after <span class="arrow">&rarr;</span></span>
       </div>
-      <h3>Specialized Support</h3>
-      <p>High-demand services requiring specialized skills and certifications, including Product Development support and C- and E-Level Executive Administrative assistance. I also turn raw data into formatted reports with pivot tables, charts, and clear summaries.</p>
+      <div class="svc-back">
+        <p class="label">Portfolio Sample: Raw CSV to Report</p>
+        <img src="assets/example-before-after-report.jpg" alt="Before and after: a raw CSV export transformed into a formatted sales performance report with KPIs, chart, and category pivot (fictional data)" loading="lazy" />
+        <a class="svc-view" href="assets/example-before-after-report.jpg" target="_blank" rel="noopener">View full size &rarr;</a>
+      </div>
     </div>
     <div class="service-card reveal">
       <span class="card-num" aria-hidden="true">06</span>
@@ -1230,6 +1365,12 @@
 
 <svg id="flying-bird" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true"><use href="#bird-mark"/></svg>
 
+<!-- LIGHTBOX: expanded portfolio example view -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Full-size portfolio example">
+  <button id="lightbox-close" type="button">&larr; Back</button>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
 <script>
   // Contact form
   const pivotForm = document.getElementById('pivot-contact-form');
@@ -1311,14 +1452,45 @@
     if (sec) spyObserver.observe(sec);
   });
 
-  // Pain cards: flip to reveal how I help
-  document.querySelectorAll('.pain-card').forEach((card) => {
+  // Lightbox: expanded view for portfolio examples
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const openLightbox = (src, alt) => {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lightboxClose.focus();
+  };
+  const closeLightbox = () => {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  document.querySelectorAll('.svc-view').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const img = link.closest('.svc-back').querySelector('img');
+      openLightbox(link.getAttribute('href'), img ? img.alt : '');
+    });
+  });
+  lightboxClose.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+
+  // Flip cards: pain cards and service cards with portfolio examples
+  document.querySelectorAll('.pain-card, .service-card.has-example').forEach((card) => {
     const flip = () => {
       const flipped = card.classList.toggle('flipped');
       card.setAttribute('aria-pressed', flipped);
     };
-    card.addEventListener('click', flip);
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return;
+      flip();
+    });
     card.addEventListener('keydown', (e) => {
+      if (e.target.closest('a')) return;
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
     });
   });
