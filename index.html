@@ -939,16 +939,34 @@
   #flying-bird {
     position: fixed;
     top: 0; left: 0;
-    width: clamp(30px, 4vw, 48px);
+    width: clamp(34px, 4.5vw, 56px);
     height: auto;
-    color: var(--gold);
     opacity: 0;
     z-index: 60;
     pointer-events: none;
     transition: opacity 0.7s ease;
     will-change: transform;
+    filter: drop-shadow(0 3px 5px rgba(19,30,51,0.35));
   }
-  #flying-bird.flying { opacity: 0.55; }
+  #flying-bird.flying { opacity: 0.85; }
+  #flying-bird .fb-wing-near,
+  #flying-bird .fb-wing-far {
+    transform-box: view-box;
+    transform-origin: 106px 82px;
+  }
+  #flying-bird .fb-wing-near { animation: fb-flap 0.16s ease-in-out infinite alternate; }
+  #flying-bird .fb-wing-far {
+    transform-origin: 102px 80px;
+    animation: fb-flap-far 0.16s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes fb-flap {
+    from { transform: rotate(-14deg); }
+    to   { transform: rotate(30deg); }
+  }
+  @keyframes fb-flap-far {
+    from { transform: rotate(-8deg); }
+    to   { transform: rotate(22deg); }
+  }
 
   /* ── REVEAL ON SCROLL ── */
   .reveal {
@@ -1471,7 +1489,34 @@
   </div>
 </footer>
 
-<svg id="flying-bird" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true"><use href="#bird-mark"/></svg>
+<svg id="flying-bird" viewBox="0 0 200 200" aria-hidden="true">
+  <defs>
+    <linearGradient id="fb-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0C96B"/>
+      <stop offset="0.55" stop-color="#D4A845"/>
+      <stop offset="1" stop-color="#A37E2C"/>
+    </linearGradient>
+    <linearGradient id="fb-wing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F5D98C"/>
+      <stop offset="1" stop-color="#C49A3A"/>
+    </linearGradient>
+    <linearGradient id="fb-wing-far" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#B08A32"/>
+      <stop offset="1" stop-color="#8a6a1f"/>
+    </linearGradient>
+  </defs>
+  <g transform="rotate(-14 100 100)">
+    <path class="fb-wing-far" fill="url(#fb-wing-far)" d="M108 74 C94 56 74 44 52 42 C70 54 82 66 90 84 C98 90 106 86 108 74 Z"/>
+    <path fill="url(#fb-body)" d="M100 118 C88 138 72 152 55 160 C70 158 86 148 98 132 Z"/>
+    <path fill="url(#fb-body)" d="M104 122 C98 140 88 154 76 164 C90 158 100 146 106 130 Z"/>
+    <ellipse cx="103" cy="95" rx="20" ry="32" transform="rotate(20 103 95)" fill="url(#fb-body)"/>
+    <circle cx="120" cy="60" r="15" fill="url(#fb-body)"/>
+    <polygon points="132,52 188,40 132,62" fill="#8a6a1f"/>
+    <circle cx="124" cy="56" r="2.6" fill="#1B2A44"/>
+    <circle cx="125" cy="55" r="0.9" fill="#FFFFFF"/>
+    <path class="fb-wing-near" fill="url(#fb-wing)" d="M112 76 C92 52 64 34 34 30 C58 44 76 62 86 88 C96 96 108 90 112 76 Z"/>
+  </g>
+</svg>
 
 <!-- LIGHTBOX: expanded portfolio example view -->
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Full-size portfolio example">
