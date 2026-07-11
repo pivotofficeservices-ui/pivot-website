@@ -691,6 +691,14 @@
   .svc-ex-arrow { color: var(--gold-bright); font-weight: 700; flex-shrink: 0; transition: transform 0.2s; }
   .svc-example:hover .svc-ex-arrow { transform: translateX(3px); }
 
+  /* ── WIDE FEATURE CARD (Product Development) ── */
+  .service-card.svc-wide { grid-column: 1 / -1; }
+  .svc-wide .svc-front { display: flex; gap: 1.6rem; align-items: flex-start; }
+  .svc-wide .svc-front .service-icon { margin-bottom: 0; flex-shrink: 0; }
+  .svc-wide .svc-front p { max-width: 800px; }
+  .svc-ex-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .svc-ex-row .svc-example { flex: 1 1 300px; max-width: 480px; }
+
   /* ── LIGHTBOX (EXPANDED EXAMPLE VIEW) ── */
   #lightbox {
     position: fixed;
@@ -986,6 +994,8 @@
     .services-grid { grid-template-columns: 1fr; }
     .pain-grid { grid-template-columns: 1fr; }
     .section-bird { width: 240px; }
+    .svc-wide .svc-front { flex-direction: column; gap: 0; }
+    .svc-wide .svc-front .service-icon { margin-bottom: 1.1rem; }
     .nav-toggle { display: block; }
     nav ul {
       display: none;
@@ -1112,7 +1122,7 @@
       </div>
       <div class="svc-back">
         <p class="label">Portfolio Sample: Expense Report</p>
-        <img src="assets/example-expense-report.jpg" alt="Sample expense report with line-item detail, receipt log, policy exclusions, and approval trail (fictional data)" loading="lazy" />
+        <img src="assets/example-expense-report.jpg" alt="Sample expense report with line-item detail, receipt log, policy exclusions, and approval trail (fictional data)" />
         <a class="svc-view" href="assets/example-expense-report.jpg" target="_blank" rel="noopener">View full size &rarr;</a>
       </div>
     </div>
@@ -1131,7 +1141,7 @@
       </div>
       <div class="svc-back">
         <p class="label">Portfolio Sample: Comp Sample Shipment</p>
-        <img src="assets/example-shipping-invoice.jpg" alt="Sample commercial invoice for an international comp-sample shipment: 25 reference samples with country of origin, category, quantity, unit and total cost, product thumbnails, and totals broken down by country and category (fictional data)" loading="lazy" />
+        <img src="assets/example-shipping-invoice.jpg" alt="Sample commercial invoice for an international comp-sample shipment: 25 reference samples with country of origin, category, quantity, unit and total cost, product thumbnails, and totals broken down by country and category (fictional data)" />
         <a class="svc-view" href="assets/example-shipping-invoice.jpg" target="_blank" rel="noopener">View full size &rarr;</a>
       </div>
     </div>
@@ -1151,7 +1161,7 @@
       <div class="svc-back svc-back-dual">
         <p class="label">Portfolio Samples</p>
         <a class="svc-view svc-example" href="assets/example-org-physical.jpg">
-          <img class="svc-ex-thumb" src="assets/example-org-physical.jpg" alt="Before and after photo of a storage room: overstuffed unlabeled cardboard boxes transformed into clear labeled bins on sectioned shelving (representative sample)" loading="lazy" />
+          <img class="svc-ex-thumb" src="assets/example-org-physical.jpg" alt="Before and after photo of a storage room: overstuffed unlabeled cardboard boxes transformed into clear labeled bins on sectioned shelving (representative sample)" />
           <span class="svc-ex-meta">
             <span class="svc-ex-title">Physical space</span>
             <span class="svc-ex-desc">Storage room &middot; before &amp; after</span>
@@ -1159,7 +1169,7 @@
           <span class="svc-ex-arrow" aria-hidden="true">&rarr;</span>
         </a>
         <a class="svc-view svc-example" href="assets/example-org-digital.jpg">
-          <img class="svc-ex-thumb" src="assets/example-org-digital.jpg" alt="Digital file system document: standardized folder structure, before-and-after file naming, and a naming convention (fictional portfolio sample)" loading="lazy" />
+          <img class="svc-ex-thumb" src="assets/example-org-digital.jpg" alt="Digital file system document: standardized folder structure, before-and-after file naming, and a naming convention (fictional portfolio sample)" />
           <span class="svc-ex-meta">
             <span class="svc-ex-title">Digital files</span>
             <span class="svc-ex-desc">Filing system &middot; cleanup</span>
@@ -1186,12 +1196,12 @@
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
         </div>
         <h3>Specialized Support</h3>
-        <p>High-demand services requiring specialized skills and certifications, including Product Development support and C- and E-Level Executive Administrative assistance. I also turn raw data into formatted reports with pivot tables, charts, and clear summaries.</p>
+        <p>High-demand services requiring specialized skills and certifications, including C- and E-Level Executive Administrative assistance. I also turn raw data into formatted reports with pivot tables, charts, and clear summaries.</p>
         <span class="pain-hint">See a before &amp; after <span class="arrow">&rarr;</span></span>
       </div>
       <div class="svc-back">
         <p class="label">Portfolio Sample: Raw CSV to Report</p>
-        <img src="assets/example-before-after-report.jpg" alt="Before and after: a raw CSV export transformed into a formatted sales performance report with KPIs, chart, and category pivot (fictional data)" loading="lazy" />
+        <img src="assets/example-before-after-report.jpg" alt="Before and after: a raw CSV export transformed into a formatted sales performance report with KPIs, chart, and category pivot (fictional data)" />
         <a class="svc-view" href="assets/example-before-after-report.jpg" target="_blank" rel="noopener">View full size &rarr;</a>
       </div>
     </div>
@@ -1202,6 +1212,43 @@
       </div>
       <h3>Home Office Setup & Career Transition Support</h3>
       <p>For professionals in transition: home office setup, resume writing, document prep, and organizational support to help you pivot into your next chapter.</p>
+    </div>
+    <div class="service-card reveal has-example svc-wide" tabindex="0" role="button" aria-pressed="false">
+      <span class="card-num" aria-hidden="true">07</span>
+      <span class="flip-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      </span>
+      <div class="svc-front">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <div class="svc-wide-body">
+          <h3>Product Development</h3>
+          <p>Hands-on support that takes a product from concept to store shelf: comp shopping and competitive analysis, multi-level cost sheets and BOMs, comp sample coordination, and trend analysis for line planning.</p>
+          <span class="pain-hint">See examples <span class="arrow">&rarr;</span></span>
+        </div>
+      </div>
+      <div class="svc-back svc-back-dual">
+        <p class="label">Portfolio Samples</p>
+        <div class="svc-ex-row">
+          <a class="svc-view svc-example" href="assets/example-comp-shopping.jpg">
+            <img class="svc-ex-thumb" src="assets/example-comp-shopping.jpg" alt="Comp shopping photo of a party-supplies aisle: current disposable partyware marked for replacement, with new eco-friendly innovation items and prices flagged as replacements (representative sample)" />
+            <span class="svc-ex-meta">
+              <span class="svc-ex-title">Comp shopping</span>
+              <span class="svc-ex-desc">In-store analysis &middot; replacements flagged</span>
+            </span>
+            <span class="svc-ex-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="svc-view svc-example" href="assets/example-cost-sheet.jpg">
+            <img class="svc-ex-thumb" src="assets/example-cost-sheet.jpg" alt="Product spec and cost workbook: technical requirements and specifications for a retail carry case, with materials, printing, safety compliance, and a product photo (fictional sample)" />
+            <span class="svc-ex-meta">
+              <span class="svc-ex-title">Spec &amp; cost sheet</span>
+              <span class="svc-ex-desc">Product workbook &middot; vendor-ready</span>
+            </span>
+            <span class="svc-ex-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
