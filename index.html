@@ -4,11 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Pivot Office Services | Dallas Metroplex Professional Office Support</title>
-<meta name="description" content="Pivot Office Services provides experienced, on-demand professional office support to businesses of all sizes throughout the Dallas Metroplex, including document creation, product development support, office organization, and more." />
+<meta name="description" content="Experienced, on-demand professional office support for businesses of all sizes throughout the Dallas Metroplex — remote or on-site, on your schedule. Services include document creation, product development support, office organization, tech training, and more." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://pivotofficeservices.com/" />
 <meta property="og:title" content="Pivot Office Services | Dallas Metroplex Professional Office Support" />
-<meta property="og:description" content="Experienced, on-demand professional office support for businesses of all sizes throughout the Dallas Metroplex." />
+<meta property="og:description" content="Experienced, on-demand professional office support for businesses of all sizes throughout the Dallas Metroplex — remote or on-site, on your schedule." />
 <meta name="twitter:card" content="summary" />
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><g fill="%23C49A3A" transform="rotate(-14 100 100)"><circle cx="120" cy="60" r="15"/><polygon points="132,52 188,40 132,62"/><ellipse cx="103" cy="95" rx="20" ry="32" transform="rotate(20 103 95)"/><path d="M100 118 C88 138 72 152 55 160 C70 158 86 148 98 132 Z"/><path d="M104 122 C98 140 88 154 76 164 C90 158 100 146 106 130 Z"/><path d="M112 76 C92 52 64 34 34 30 C58 44 76 62 86 88 C96 96 108 90 112 76 Z"/></g></svg>' />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -526,6 +526,50 @@
     margin-right: 0.1rem;
     letter-spacing: 0.02em;
   }
+  .rate-note {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    margin-top: 1.1rem;
+  }
+  .rate-note + .rate-note { margin-top: 0.6rem; }
+  .rate-note strong { color: var(--gold-bright); font-weight: 600; }
+  .tip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: rgba(227,181,76,0.18);
+    color: var(--gold-bright);
+    font-size: 0.72rem;
+    font-style: normal;
+    cursor: help;
+    position: relative;
+    margin-left: 0.35rem;
+    vertical-align: middle;
+  }
+  .tip::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 9px);
+    left: 0;
+    width: min(270px, 62vw);
+    background: var(--footer);
+    color: rgba(255,255,255,0.92);
+    font-size: 0.76rem;
+    font-weight: 400;
+    line-height: 1.55;
+    padding: 0.7rem 0.85rem;
+    border-radius: 7px;
+    border: 1px solid rgba(227,181,76,0.35);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 5;
+  }
+  .tip:hover::after, .tip:focus::after { opacity: 1; }
 
   /* ── WHO I SERVE ── */
   .who {
@@ -897,6 +941,31 @@
     margin-bottom: 1.2rem;
   }
   .form-group { margin-bottom: 1rem; }
+  .form-row { display: flex; gap: 1rem; }
+  .form-row .form-group { flex: 1; min-width: 0; }
+  .form-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 0.35rem;
+  }
+  .form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%23E3B54C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.85rem center;
+    padding-right: 2.2rem;
+    cursor: pointer;
+  }
+  .form-group select:focus {
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 0 3px rgba(227,181,76,0.15);
+  }
+  .form-group select option { color: var(--text); background: var(--white); }
   .form-group input,
   .form-group textarea,
   .form-group select {
@@ -1040,6 +1109,7 @@
     .why-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .hero { padding-top: 7rem; }
     .contact-wrapper { grid-template-columns: 1fr; gap: 1.5rem; }
+    .form-row { flex-direction: column; gap: 0; }
     .trust { gap: 1.2rem 2rem; }
   }
 </style>
@@ -1085,7 +1155,7 @@
   <div class="hero-inner">
     <span class="hero-eyebrow">Dallas Metroplex Professional&nbsp;|&nbsp;Skilled&nbsp;|&nbsp;Qualified</span>
     <h1><span class="h1-line">The office help you need,</span> <span class="h1-line"><em>without the overhead.</em></span></h1>
-    <p>Pivot Office Services provides experienced, on-demand professional office support to businesses of all sizes, from entrepreneurs and professionals in transition to mass-market retailers. Remote or on-site, on your schedule.</p>
+    <p>Pivot Office Services provides experienced, on-demand professional office support to businesses of all sizes, from entrepreneurs and professionals in transition to large organizations. Remote or on-site, on your schedule.</p>
     <div class="hero-btns">
       <a href="#contact" class="btn-primary">Let's Work Together</a>
       <a href="#services" class="btn-ghost">See What I Do</a>
@@ -1196,13 +1266,24 @@
         </a>
       </div>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal has-example" tabindex="0" role="button" aria-pressed="false">
       <span class="card-num" aria-hidden="true">04</span>
-      <div class="service-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <span class="flip-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      </span>
+      <div class="svc-front">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>Tech Troubleshooting & Training</h3>
+        <p>Hands-on troubleshooting and training across all three major office suites — Microsoft Office (Word, Excel, PowerPoint, Outlook), Google Workspace (Docs, Sheets, Gmail, Calendar), and Apple iWork (Pages, Numbers, Keynote) — plus Zoom, Teams, SharePoint, and office equipment. I also help your team adopt new software with confidence — including generative AI, where I hold IBM certificates in AI fundamentals and prompt engineering.</p>
+        <span class="pain-hint">See an example <span class="arrow">&rarr;</span></span>
       </div>
-      <h3>Tech Troubleshooting & Training</h3>
-      <p>Hands-on troubleshooting and training across all three major office suites — Microsoft Office (Word, Excel, PowerPoint, Outlook), Google Workspace (Docs, Sheets, Gmail, Calendar), and Apple iWork (Pages, Numbers, Keynote) — plus Zoom, Teams, SharePoint, and office equipment. I also help your team adopt new software with confidence.</p>
+      <div class="svc-back">
+        <p class="label">Portfolio Sample: Training Quick Reference</p>
+        <img src="assets/example-training-guide.jpg" alt="One-page training quick-reference handout: building an Excel pivot table in six steps, with annotated visuals (fictional sample)" />
+        <a class="svc-view" href="assets/example-training-guide.jpg" target="_blank" rel="noopener">View full size &rarr;</a>
+      </div>
     </div>
     <div class="service-card reveal has-example" tabindex="0" role="button" aria-pressed="false">
       <span class="card-num" aria-hidden="true">05</span>
@@ -1223,13 +1304,24 @@
         <a class="svc-view" href="assets/example-before-after-report.jpg" target="_blank" rel="noopener">View full size &rarr;</a>
       </div>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal has-example" tabindex="0" role="button" aria-pressed="false">
       <span class="card-num" aria-hidden="true">06</span>
-      <div class="service-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span class="flip-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      </span>
+      <div class="svc-front">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Home Office Setup & Career Transition Support</h3>
+        <p>Whether you're pivoting to a new role or launching your own venture: complete home office setup — Wi-Fi, printer, and devices included — plus resume and cover letter polishing (your words, ATS-ready formatting), document prep, and the organizational support to hit the ground running in your next chapter.</p>
+        <span class="pain-hint">See an example <span class="arrow">&rarr;</span></span>
       </div>
-      <h3>Home Office Setup & Career Transition Support</h3>
-      <p>For professionals in transition: home office setup, resume writing, document prep, and organizational support to help you pivot into your next chapter.</p>
+      <div class="svc-back">
+        <p class="label">Portfolio Sample: Resume Before &amp; After</p>
+        <img src="assets/example-resume-before-after.jpg" alt="Before and after resume: a dense, hard-to-scan draft transformed into a clean, ATS-ready format — same content, professionally polished (fictional sample)" />
+        <a class="svc-view" href="assets/example-resume-before-after.jpg" target="_blank" rel="noopener">View full size &rarr;</a>
+      </div>
     </div>
     <div class="service-card reveal has-example svc-wide" tabindex="0" role="button" aria-pressed="false">
       <span class="card-num" aria-hidden="true">07</span>
@@ -1317,7 +1409,7 @@
         <span class="rate-value"><span class="rate-prefix">Starting at</span> $95 / hr</span>
       </div>
       <div class="rate-row">
-        <span class="rate-label">Project-Based</span>
+        <span class="rate-label">Project-Based <span class="tip" tabindex="0" role="note" aria-label="How project quotes work" data-tip="Quoted after a paid initial assessment, so estimates reflect real scope — hours, deliverables, and timeline are set in a written Statement of Work before project work begins. Larger projects are quoted in phases with reassessment points.">&#9432;</span></span>
         <span class="rate-value">Custom Quote</span>
       </div>
       <div class="rate-row">
@@ -1329,9 +1421,11 @@
         <span class="rate-value">$35</span>
       </div>
       <div class="rate-row">
-        <span class="rate-label">On-Site Travel Fee (30+ mi)</span>
+        <span class="rate-label">On-Site Travel Fee (30+ mi) <span class="tip" tabindex="0" role="note" aria-label="How extended travel is quoted" data-tip="Quoted per visit based on round-trip distance from North Dallas.">&#9432;</span></span>
         <span class="rate-value">Quoted</span>
       </div>
+      <p class="rate-note">On-site rates reflect fully equipped, hands-on work at your location — I bring my own computer, monitor, and gear, and reserve the day for you. The flat travel charge covers round-trip mileage and drive time only, so nothing is billed twice. Many projects can also be handled remotely at the lower rate — your choice. <strong>On-site visits have a four-hour minimum.</strong></p>
+      <p class="rate-note">All engagements are covered by a signed Service Agreement and Statement of Work — happy to walk you through them before you commit.</p>
     </div>
   </div>
 </section>
@@ -1342,7 +1436,7 @@
   <div class="who-header reveal">
     <h2 class="section-title">Sound familiar?</h2>
     <svg class="flight-rule" viewBox="0 0 130 26" aria-hidden="true"><path d="M3 20 C 30 4, 62 24, 100 10"/><g class="fr-bird-g"><path class="fr-bird" transform="translate(100 2) scale(0.11) rotate(-10)" d="M120 60 m-15 0 a15 15 0 1 0 30 0 a15 15 0 1 0 -30 0 M132 52 L188 40 L132 62 Z M83 63 a20 32 20 1 0 40 0 a20 32 20 1 0 -40 0 M100 118 C88 138 72 152 55 160 C70 158 86 148 98 132 Z M112 76 C92 52 64 34 34 30 C58 44 76 62 86 88 C96 96 108 90 112 76 Z"/></g></svg>
-    <p class="section-sub">I work with small business owners, entrepreneurs, and professionals in transition who need reliable administrative support without the commitment of a full-time hire. <strong>Click a card to see how I help.</strong></p>
+    <p class="section-sub">If any of these ring true, I can help — reliable administrative support without the commitment of a full-time hire or inflated agency fees. <strong>Click a card to see how.</strong></p>
   </div>
   <div class="pain-grid">
     <div class="pain-card reveal" tabindex="0" role="button" aria-pressed="false">
@@ -1411,7 +1505,7 @@
         <span class="pain-hint">How I help <span class="arrow">&rarr;</span></span>
       </div>
       <div class="pain-back">
-        <p>From home office setup to resume writing, document prep, and expense tracking, I'll get your new venture's foundation in place so you can hit the ground running.</p>
+        <p>From complete home office setup — Wi-Fi, printer, and devices — to resume polishing, document prep, and expense tracking, I'll get your next chapter's foundation in place so you can hit the ground running.</p>
         <p class="label">The Professional in Transition</p>
       </div>
     </div>
@@ -1451,10 +1545,32 @@
           <input type="text" name="name" placeholder="Your Name" required />
         </div>
         <div class="form-group">
-          <input type="email" name="email" placeholder="Your Email Address" required />
+          <input type="text" name="business" placeholder="Business Name (optional)" />
         </div>
         <div class="form-group">
-          <input type="tel" name="phone" placeholder="Your Phone Number (optional)" />
+          <input type="email" name="email" placeholder="Your Email Address" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="pref-contact">Contact me by</label>
+            <select name="contact_preference" id="pref-contact">
+              <option value="Email" selected>Email</option>
+              <option value="Phone call">Phone call</option>
+              <option value="Text">Text</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pref-time">Best time to reach you</label>
+            <select name="best_time" id="pref-time">
+              <option value="Anytime" selected>Anytime</option>
+              <option value="Morning">Morning</option>
+              <option value="Afternoon">Afternoon</option>
+              <option value="Evening">Evening</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="tel" name="phone" id="phone-input" placeholder="Your Phone Number (optional)" />
         </div>
         <div class="form-group">
           <textarea name="message" placeholder="Tell me a little about what you need help with..." required></textarea>
@@ -1473,7 +1589,7 @@
         <svg class="logo-mark" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true"><use href="#bird-mark"/></svg>
         <span class="logo-text">Pivot <span>Office</span> Services</span>
       </a>
-      <p class="footer-tag">Experienced, on-demand office support for the Dallas Metroplex. Remote or on-site, on your schedule.</p>
+      <p class="footer-tag">Experienced, on-demand professional office support for businesses of all sizes throughout the Dallas Metroplex — remote or on-site, on your schedule.</p>
     </div>
     <ul class="footer-nav">
       <li><a href="#services">Services</a></li>
@@ -1525,6 +1641,21 @@
 </div>
 
 <script>
+  // Contact preference: require phone only when the visitor asks to be called or texted
+  const prefSelect = document.getElementById('pref-contact');
+  const phoneInput = document.getElementById('phone-input');
+  if (prefSelect && phoneInput) {
+    const syncPhone = () => {
+      const needsPhone = prefSelect.value !== 'Email';
+      phoneInput.required = needsPhone;
+      phoneInput.placeholder = needsPhone
+        ? 'Your Phone Number (required so I can reach you)'
+        : 'Your Phone Number (optional)';
+    };
+    prefSelect.addEventListener('change', syncPhone);
+    syncPhone();
+  }
+
   // Contact form
   const pivotForm = document.getElementById('pivot-contact-form');
   if (pivotForm) {
