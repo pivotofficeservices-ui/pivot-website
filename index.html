@@ -812,6 +812,104 @@
   .pain-back p { font-size: 0.9rem; color: rgba(255,255,255,0.85); line-height: 1.7; }
   .pain-back .label { color: var(--gold-bright); }
 
+  /* ── ABOUT ── */
+  .about {
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+  .about .section-bird {
+    left: -5%;
+    bottom: -10%;
+    transform: rotate(-8deg) scaleX(-1);
+  }
+  .about-wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .about-teaser {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+  }
+  .teaser-photo {
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 20%;
+    border: 4px solid var(--white);
+    box-shadow: 0 14px 34px rgba(27,42,68,0.18);
+    flex-shrink: 0;
+  }
+  .teaser-text .section-title { margin-bottom: 0.6rem; }
+  .teaser-text .flight-rule { margin: 0.4rem 0 1rem; }
+  .teaser-text .section-sub { margin-bottom: 1.2rem; }
+  .teaser-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    padding: 0.7rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .teaser-btn:hover { background: var(--gold-bright); transform: translateY(-1px); }
+  .teaser-btn .arrow { transition: transform 0.25s ease; display: inline-block; }
+  .teaser-btn:hover .arrow { transform: translateX(4px); }
+  .teaser-btn[aria-expanded="true"] .arrow { transform: rotate(90deg); }
+  .about-full {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease;
+  }
+  .about-full.open { max-height: 2600px; }
+  .about-full-inner {
+    padding-top: 2.2rem;
+    max-width: 720px;
+  }
+  .about-full-inner p {
+    font-size: 0.97rem;
+    color: var(--text);
+    line-height: 1.85;
+    margin-bottom: 1.05rem;
+  }
+  .about-sig {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem !important;
+    font-weight: 600;
+    color: var(--primary) !important;
+    margin-top: 0.4rem;
+  }
+  .about-sig span { color: var(--gold); }
+  .about-creds {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+  }
+  .cred-chip {
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    background: var(--tint);
+    color: #8a6a1f;
+    border: 1px solid rgba(196,154,58,0.3);
+    border-radius: 999px;
+    padding: 0.38rem 0.95rem;
+  }
+
   /* ── CTA ── */
   .cta-section {
     background: linear-gradient(160deg, var(--primary) 0%, var(--primary-2) 100%);
@@ -1107,6 +1205,9 @@
       color: var(--white);
     }
     .why-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-teaser { flex-direction: column; text-align: center; gap: 1.4rem; }
+    .teaser-text .flight-rule { margin-left: auto; margin-right: auto; }
+    .about-full-inner { text-align: left; }
     .hero { padding-top: 7rem; }
     .contact-wrapper { grid-template-columns: 1fr; gap: 1.5rem; }
     .form-row { flex-direction: column; gap: 0; }
@@ -1145,6 +1246,7 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Pivot</a></li>
     <li><a href="#who">Who I Serve</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
   </ul>
 </nav>
@@ -1192,7 +1294,7 @@
   <div class="services-header reveal">
     <h2 class="section-title">A full range of administrative expertise</h2>
     <svg class="flight-rule" viewBox="0 0 130 26" aria-hidden="true"><path d="M3 20 C 30 4, 62 24, 100 10"/><g class="fr-bird-g"><path class="fr-bird" transform="translate(100 2) scale(0.11) rotate(-10)" d="M120 60 m-15 0 a15 15 0 1 0 30 0 a15 15 0 1 0 -30 0 M132 52 L188 40 L132 62 Z M83 63 a20 32 20 1 0 40 0 a20 32 20 1 0 -40 0 M100 118 C88 138 72 152 55 160 C70 158 86 148 98 132 Z M112 76 C92 52 64 34 34 30 C58 44 76 62 86 88 C96 96 108 90 112 76 Z"/></g></svg>
-    <p class="section-sub">From polished presentations to complex shipping documentation, I handle the time-consuming tasks that keep your business running so you can focus on growing it.</p>
+    <p class="section-sub">From polished presentations to complex shipping documentation, I handle the time-consuming tasks that keep your business running — so you can focus on growth.</p>
   </div>
   <div class="services-grid">
     <div class="service-card reveal has-example" tabindex="0" role="button" aria-pressed="false">
@@ -1512,6 +1614,37 @@
   </div>
 </section>
 
+<!-- ABOUT -->
+<section class="about" id="about">
+  <svg class="section-bird" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true"><use href="#bird-mark"/></svg>
+  <div class="about-wrap">
+    <div class="about-teaser reveal">
+      <img class="teaser-photo" src="assets/rachel-hartman.jpg" alt="Rachel Hartman, owner of Pivot Office Services — smiling in a pinstripe blazer, glasses in hand" />
+      <div class="teaser-text">
+        <h2 class="section-title">Meet Rachel</h2>
+        <svg class="flight-rule" viewBox="0 0 130 26" aria-hidden="true"><path d="M3 20 C 30 4, 62 24, 100 10"/><g class="fr-bird-g"><path class="fr-bird" transform="translate(100 2) scale(0.11) rotate(-10)" d="M120 60 m-15 0 a15 15 0 1 0 30 0 a15 15 0 1 0 -30 0 M132 52 L188 40 L132 62 Z M83 63 a20 32 20 1 0 40 0 a20 32 20 1 0 -40 0 M100 118 C88 138 72 152 55 160 C70 158 86 148 98 132 Z M112 76 C92 52 64 34 34 30 C58 44 76 62 86 88 C96 96 108 90 112 76 Z"/></g></svg>
+        <p class="section-sub">Dallas-raised, three decades inside offices of every size — and one honest realization. That's how Pivot began.</p>
+        <button class="teaser-btn" id="bio-toggle" type="button" aria-expanded="false" aria-controls="about-full">Read my story <span class="arrow">&rarr;</span></button>
+      </div>
+    </div>
+    <div class="about-full" id="about-full">
+      <div class="about-full-inner">
+        <p>I'm Rachel Hartman — Dallas-raised, UNT-educated, and back home in Big D after a few years in Scottsdale.</p>
+        <p>I've spent nearly three decades inside offices of every size: managing the finances and technology for a family-owned consulting firm, supporting executives from the C-suite at Omni Hotels to EVP level at Michaels, and developing private-brand products for mass-market retail.</p>
+        <p>Pivot started with some honest math. I once managed two temps whose staffing firm billed $80 an hour for each of them — yet neither knew their way around advanced Excel or PowerPoint, and the firm kept more than half of every dollar. It occurred to me: businesses could pay the same rate and get decades of real experience instead. That's Pivot — the expertise without the markup, or the overhead of a full-time hire.</p>
+        <p>Beyond that? I'm the geek who genuinely enjoys getting your Wi-Fi working, showing you what your iPhone can really do, and passing along the little shortcuts that make everyday computer work easier. But underneath all of it is something simpler: I care about people and their happiness. I'm the sort who once hand-made birthday cards for every senior on my Meals on Wheels route. Helping people work better isn't just my business — it's my nature.</p>
+        <p class="about-sig">— Rachel Hartman, <span>Owner</span></p>
+        <div class="about-creds">
+          <span class="cred-chip">BBA, Strategic Management — UNT</span>
+          <span class="cred-chip">Certified Scrum Master</span>
+          <span class="cred-chip">IBM Generative AI Certificates</span>
+          <span class="cred-chip">E&amp;O Insured</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta-section" id="contact">
   <h2>Need to Pivot? Let's get to work.</h2>
@@ -1595,6 +1728,7 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#why">Why Pivot</a></li>
       <li><a href="#who">Who I Serve</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#contact">Get In Touch</a></li>
     </ul>
   </div>
@@ -1685,6 +1819,19 @@
           submitBtn.disabled = false;
           alert('Something went wrong sending your message. Please try again or email rachel@pivotofficeservices.com directly.');
         });
+    });
+  }
+
+  // Bio teaser: expand/collapse the full story
+  const bioToggle = document.getElementById('bio-toggle');
+  const bioFull = document.getElementById('about-full');
+  if (bioToggle && bioFull) {
+    bioToggle.addEventListener('click', () => {
+      const open = bioFull.classList.toggle('open');
+      bioToggle.setAttribute('aria-expanded', open);
+      bioToggle.innerHTML = open
+        ? 'Close my story <span class="arrow">&rarr;</span>'
+        : 'Read my story <span class="arrow">&rarr;</span>';
     });
   }
 
