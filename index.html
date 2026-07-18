@@ -533,6 +533,33 @@
     margin-top: 1.1rem;
   }
   .rate-note + .rate-note { margin-top: 0.6rem; }
+  .rates-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    padding: 0.65rem 1.4rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.87rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .rates-btn:hover { background: var(--gold-bright); transform: translateY(-1px); }
+  .rates-btn .arrow { transition: transform 0.25s ease; display: inline-block; }
+  .rates-btn:hover .arrow { transform: translateX(4px); }
+  .rates-btn[aria-expanded="true"] .arrow { transform: rotate(90deg); }
+  .rates-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease;
+  }
+  .rates-body.open { max-height: 1400px; }
+  .rates-body .rate-row:first-child { margin-top: 1.2rem; }
   .rate-note strong { color: var(--gold-bright); font-weight: 600; }
   .tip {
     display: inline-flex;
@@ -1497,7 +1524,9 @@
     </div>
     <div class="why-visual reveal">
       <h3>Simple, transparent pricing</h3>
-      <p>No surprises. No long-term contracts. Just honest work at fair rates.</p>
+      <p>No surprises. No long-term contracts. Just honest work at fair rates — one click away.</p>
+      <button class="rates-btn" id="rates-toggle" type="button" aria-expanded="false" aria-controls="rates-body">View my rates <span class="arrow">&rarr;</span></button>
+      <div class="rates-body" id="rates-body">
       <div class="rate-row">
         <span class="rate-label">Remote Hourly</span>
         <span class="rate-value"><span class="rate-prefix">Starting at</span> $75 / hr</span>
@@ -1528,6 +1557,7 @@
       </div>
       <p class="rate-note">On-site rates reflect fully equipped, hands-on work at your location — I bring my own computer, monitor, and gear, and reserve the day for you. The flat travel charge covers round-trip mileage and drive time only, so nothing is billed twice. Many projects can also be handled remotely at the lower rate — your choice. <strong>On-site visits have a four-hour minimum.</strong></p>
       <p class="rate-note">All engagements are covered by a signed Service Agreement and Statement of Work — happy to walk you through them before you commit.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1629,10 +1659,10 @@
     </div>
     <div class="about-full" id="about-full">
       <div class="about-full-inner">
-        <p>I'm Rachel Hartman — Dallas-raised, UNT-educated, and back home in Big D after a few years in Scottsdale.</p>
+        <p>I'm Rachel Hartman. Dallas-raised, UNT-educated, and back home in Big D after a few years in Scottsdale.</p>
         <p>I've spent nearly three decades inside offices of every size: managing the finances and technology for a family-owned consulting firm, supporting executives from the C-suite at Omni Hotels to EVP level at Michaels, and developing private-brand products for mass-market retail.</p>
-        <p>Pivot started with some honest math. I once managed two temps whose staffing firm billed $80 an hour for each of them — yet neither knew their way around advanced Excel or PowerPoint, and the firm kept more than half of every dollar. It occurred to me: businesses could pay the same rate and get decades of real experience instead. That's Pivot — the expertise without the markup, or the overhead of a full-time hire.</p>
-        <p>Beyond that? I'm the geek who genuinely enjoys getting your Wi-Fi working, showing you what your iPhone can really do, and passing along the little shortcuts that make everyday computer work easier. But underneath all of it is something simpler: I care about people and their happiness. I'm the sort who once hand-made birthday cards for every senior on my Meals on Wheels route. Helping people work better isn't just my business — it's my nature.</p>
+        <p>Pivot began with an honest realization. Everywhere I looked, businesses were paying premium rates for inexperienced help, and owners were surrendering their best hours to paperwork. The winemaker stuck at a desk instead of out in the vines. The manager who just needs an extra pair of hands to carry a big project across the finish line. Time is the one thing a business can't buy back, so I built a business that gives it back: your hours return to the work you actually love. That's Pivot — the expertise without the markup, or the overhead of a full-time hire.</p>
+        <p>Beyond that? I'm the geek who genuinely enjoys getting your Wi-Fi working, showing you what your iPhone can really do, and passing along the little shortcuts that make everyday computer work easier. But underneath all of it is something simpler: I care about people and their happiness. I'm the sort who once hand-made birthday cards for every senior on my Meals on Wheels route. Helping people work better isn't just my business. It's my nature.</p>
         <p class="about-sig">— Rachel Hartman, <span>Owner</span></p>
         <div class="about-creds">
           <span class="cred-chip">BBA, Strategic Management — UNT</span>
@@ -1832,6 +1862,19 @@
       bioToggle.innerHTML = open
         ? 'Close my story <span class="arrow">&rarr;</span>'
         : 'Read my story <span class="arrow">&rarr;</span>';
+    });
+  }
+
+  // Pricing: click to view rates
+  const ratesToggle = document.getElementById('rates-toggle');
+  const ratesBody = document.getElementById('rates-body');
+  if (ratesToggle && ratesBody) {
+    ratesToggle.addEventListener('click', () => {
+      const open = ratesBody.classList.toggle('open');
+      ratesToggle.setAttribute('aria-expanded', open);
+      ratesToggle.innerHTML = open
+        ? 'Hide rates <span class="arrow">&rarr;</span>'
+        : 'View my rates <span class="arrow">&rarr;</span>';
     });
   }
 
